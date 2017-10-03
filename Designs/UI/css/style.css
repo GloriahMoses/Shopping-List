@@ -35,6 +35,18 @@ h1 {
 #nothing{
 
 }
+a {
+    color: #17a2b8;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #ffffff;
+}
+
 @media (min-width: 992px) {
         body {
           padding-top: 56px;
