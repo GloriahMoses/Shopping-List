@@ -1,0 +1,49 @@
+body{
+	color:#fff;
+	font:18px/28px 'Raleway', sans-serif;
+	font-weight:300;
+  
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Coustard', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 72px;
+}
+
+.title {
+  position: relative; 
+  margin: 90px auto 0px auto;
+  text-align: center;
+  font-size: 72px;
+  }
+
+.tagline {
+  position: relative; 
+  margin: 20px auto 20px auto;
+  text-align: center;
+  font-size: 72px;
+  }
+
+.button{
+	margin: 15px 15px 15px auto;
+}
+#nothing{
+
+}
+@media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
