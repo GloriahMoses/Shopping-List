@@ -17,7 +17,7 @@ h1 {
 
 .title {
   position: relative; 
-  margin: 90px auto 0px auto;
+  margin: 120px auto 15px auto;
   text-align: center;
   font-size: 72px;
   }
@@ -30,11 +30,12 @@ h1 {
   }
 
 .button{
-	margin: 15px 15px 15px auto;
+	margin: 2em 15px 15px auto;
 }
-#nothing{
 
-}
+.btn {
+    margin-left: 2em;
+  }
 a {
     color: #17a2b8;
     text-decoration: none;
@@ -47,15 +48,17 @@ a:hover{
   color: #ffffff;
 }
 
-@media (min-width: 992px) {
-        body {
-          padding-top: 56px;
-}
-
 table, th, td {
     border: 1px solid white;
     border-collapse: collapse;
 }
 th, td {
     padding: 5px;
-    text-align: left;
+    text-align: left;}
+
+.footer{
+  margin-top: 3.2em;
+  bottom: 0;
+  font-style: italic;
+  color: #17a2b8;
+}
