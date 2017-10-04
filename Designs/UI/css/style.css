@@ -33,9 +33,16 @@ h3 {
   list-style: none;
 }
 
-.title {
+.title-main {
   position: relative; 
   margin: 120px auto 15px auto;
+  text-align: center;
+  font-size: 72px;
+  }
+
+.title {
+  position: relative; 
+  margin: 10px auto 15px auto;
   text-align: center;
   font-size: 72px;
   }
@@ -63,7 +70,7 @@ a {
 
 a:hover{
   text-decoration: none;
-  color: #ffffff;
+  color: #000;
 }
 
 table, th, td {
@@ -80,8 +87,22 @@ th, td {
   font-style: italic;
   color: #17a2b8;
 }
+
+.footer-1{
+  margin-top: 12em;
+  bottom: 0;
+  font-style: italic;
+  color: #17a2b8;
+}
 .footer-2{
   margin-top: 11em;
+  bottom: 0;
+  font-style: italic;
+  color: #17a2b8;
+}
+
+.footer-3{
+  margin-top: 18em;
   bottom: 0;
   font-style: italic;
   color: #17a2b8;
