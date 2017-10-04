@@ -15,6 +15,24 @@ h1 {
     font-size: 72px;
 }
 
+h3 {
+    font-size: 40px;
+}
+
+.navbar{
+  background-color: #eee;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.navbar p{
+  color: black;
+}
+
+.navbar li{
+  list-style: none;
+}
+
 .title {
   position: relative; 
   margin: 120px auto 15px auto;
@@ -58,6 +76,12 @@ th, td {
 
 .footer{
   margin-top: 3.2em;
+  bottom: 0;
+  font-style: italic;
+  color: #17a2b8;
+}
+.footer-2{
+  margin-top: 11em;
   bottom: 0;
   font-style: italic;
   color: #17a2b8;
