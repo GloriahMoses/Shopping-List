@@ -70,7 +70,11 @@ a {
 
 a:hover{
   text-decoration: none;
-  color: #000;
+  color: #ccc;
+}
+
+.delete-add .navbar{
+  background-color: transparent;
 }
 
 table, th, td {
@@ -80,6 +84,10 @@ table, th, td {
 th, td {
     padding: 5px;
     text-align: left;}
+
+.reset-password{
+  text-align: center;
+}
 
 .footer{
   margin-top: 3.2em;
@@ -103,6 +111,13 @@ th, td {
 
 .footer-3{
   margin-top: 18em;
+  bottom: 0;
+  font-style: italic;
+  color: #17a2b8;
+}
+
+.footer-4{
+  margin-top: 8em;
   bottom: 0;
   font-style: italic;
   color: #17a2b8;
