@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Coustard' rel='stylesheet' type='text/css'>
+
+    <title>Shopping List</title>
+
+    <!--CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+
+  </head>
+
+  <body background="images/bg.jpg" width= "100%">
+
+    <!-- Container start -->
+    <div class="container">
+      
+      <!--navigation -->
+      <nav class="navbar">
+          <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
+          <li><a href="create-shopping-list.html">Create List</a></li>
+          <li><a href="shopping-lists.html">View Lists</a></li>
+          <li><a href="#">Log Out</a></li>
+      </nav><!--navigation end-->
+
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8"><!-- body -->
+
+          <div class="title">
+            <h1>Shopping List:</h1>
+          </div>
+
+          <div class="tagline">
+            <h2>12/09/2018</h2>
+          </div>
+
+          <div class="delete-add">
+            <div class="navbar">
+               <li><a href="add-item-details.html">Add More Items</a></li>
+               <li><a href="#">Delete list</a></li>
+            </div>
+
+          <div>
+             
+          </div>
+
+          <div id="list-desc"><!-- Shoping list desc -->
+            <p>
+              <strong>12/09/2018 Description:</strong> This a shopping list for purchases to be made on 12/09/2018 for grandma's annual visit for the year 2018.
+            </p>
+          </div><!--End Shoping list desc -->
+
+          <table style="width:100%">
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Est Bugdet</th>
+              <th colspan="3">Actions</th>
+            </tr>
+            <tr>
+              <td>1. Sugar</td>
+              <td>2kg</td>
+              <td>Ksh. 200/= </td>
+              <td><input type="checkbox" name="check" value="check">Bought<br></td>
+              <td><a href="#">Update</a></td>
+              <td><a href="#">Delete</a></td>
+            </tr>
+            <tr>
+              <td>2. Salt</td>
+              <td>1kg</td>
+              <td>Ksh. 200/= </td>
+              <td><input type="checkbox" name="check" value="check">Bought<br></td>
+              <td><a href="#">Update</a></td>
+              <td><a href="#">Delete</a></td>
+            </tr>
+          </table>
+
+          <footer> <!--start footer -->
+      <div class="row">
+        <div class="col-lg-4 text-center"></div>
+        <div class="col-lg-4 text-center">
+          <div class="footer-4">
+              <p>&copy; 2017 Shopping List</p>
+          </div>
+        </div>
+        </footer><!--End footer -->
+
+        </div>
+        
+    </div><!-- Container End -->
+
+    <!--JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+
+  </body>
+
+</html>
