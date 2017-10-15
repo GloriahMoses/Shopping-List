@@ -20,11 +20,7 @@
 
     <!-- Container start -->
     <div class="container">
-        {% if data %}
-      <div class="alert alert-warning">
-        {{data}}
-      </div>
-      {% endif %}
+    
     <!--navigation -->
       <nav class="navbar">
           <div class="navbar-header">
@@ -33,6 +29,12 @@
           <p>Already have an account, click <a href="login.html">HERE</a> to login.<p>
       </nav><!--navigation end-->
       
+      {% if messages %}<!--warning start-->
+      <div class="alert alert-warning">
+        {{messages}}
+      </div>
+      {% endif %}<!--warning end-->
+
       <div class="row"> <!--salute -->
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
@@ -47,22 +49,22 @@
 
               <div class="form-group"><!--Name start-->
                 <label for="name">Names</label>
-                <input type="name" id="name" class="form-control" placeholder="Enter your name(s)">
+                <input type="name" name="name" class="form-control" placeholder="Enter your name(s)">
               </div> <!--Name end-->
 
               <div class="form-group"><!--Email start-->
                 <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter Email">
+                <input type="email" name="email" class="form-control" placeholder="Enter Email">
               </div> <!--Email end-->
 
               <div class="form-group"><!--password start-->
                 <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" placeholder="Enter Password">
+                <input type="password" name="password" class="form-control" placeholder="Enter Password">
               </div> <!--password end-->
 
               <div class="form-group"><!--cpassword start-->
                 <label for="cpassword">Confirm Password</label>
-                <input type="password" id="cpassword" class="form-control" placeholder="Confirm Password">
+                <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
               </div> <!--cpassword end-->
 
               <div class="form-group"><!--submit start-->
@@ -86,7 +88,7 @@
     </div><!-- Container End -->
 
     <!-- JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
 
   </body>
 
