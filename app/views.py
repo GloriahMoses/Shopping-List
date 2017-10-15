@@ -1,29 +1,66 @@
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request
 from app import app
 from user import User
-details = User()
+
+user_details = User()
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/register/', methods=['GET', 'POST'])
-
+@app.route('/register/', methods=['GET','POST'])
 def registration():
-	if request.method == 'POST' and request.method == 'GET':
-		name = request.form.get['name']
-		email = request.form.get['email']
-		password = request.form.get['password']
-		cpassword = request.form.get['cpassword']
-		user_details = details.registration(email, name, password, cpassword)
-		if user_details == 1:
-			return render_template('login.html')
-		
-	return render_template('register.html')
+    """User registration requests"""
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        cpassword = request.form['cpassword']
+        registered_user = user_details.registration(name, email, password, cpassword)
 
-@app.route('/login', methods=['GET', 'POST'])
+        if registered_user == 1: #successfully logged in
+        	return render_template('login.html')
+
+        elif registered_user == 2:#Password dont match
+            msg = "Passwords don't match, try again"
+            return render_template('register.html', messages = msg)
+
+        elif registered_user == 3:#Email already registred
+            msg = "Email already registered, login"
+            return render_template('login.html', messages = msg)
+
+        elif registered_user == 4:#Fill in all the fields
+            msg = "All fields are required, try again"
+            return render_template('register.html', messages = msg)
+
+    return render_template('register.html')
+
+@app.route('/login/', methods=['GET','POST'])
 def login():
+    """User login requests"""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        details = user_details.login(email, password)
+
+        if details == 5: #Login successfull
+            return render_template('create-shopping-list.html')
+            
+        elif details == 6:#Wrong password
+          msg = "Wrong email/password, try again"
+          return render_template('login.html', messages = msg)
+
+        elif details == 7: #Invalid Email
+          msg = "Email not registered"
+          return render_template('login.html', messages = msg)
+
     return render_template('login.html')
+    
+@app.route('/create/', methods=['GET', 'POST'])
+def create_list():
+    """Create shopping list"""
+    if request.method == 'POST':
+    	title = request.form['title']
+    	description = request.form['description']
+        
+    return render_template('create-shopping-list.html')
