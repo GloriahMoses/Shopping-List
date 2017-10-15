@@ -11,15 +11,20 @@
     <title>Login</title>
 
     <!--CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet" />
 
   </head>
 
-  <body background="images/bg.jpg" width= "100%">
+  <body background="../static/images/bg.jpg" width= "100%">
 
     <!-- Container start -->
     <div class="container">
+      {% if data %}
+      <div class="alert alert-warning">
+        {{data}}
+      </div>
+      {% endif %}
 
     <!--navigation -->
       <nav class="navbar">
@@ -37,16 +42,16 @@
 
           <!--form start-->
           <div class="form">
-            <form action="" method="">
+            <form action={{url_for('login')}} method="POST">
 
               <div class="form-group"><!--Email start-->
                 <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter Email">
+                <input type="email" name="email" class="form-control" placeholder="Enter Email">
               </div> <!--Email end-->
 
               <div class="form-group"><!--password start-->
                 <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" placeholder="Enter Password">
+                <input type="password" name="password" class="form-control" placeholder="Enter Password">
               </div> <!--password end-->
 
               <div class="form-group"><!--submit start-->
