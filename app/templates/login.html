@@ -20,17 +20,18 @@
 
     <!-- Container start -->
     <div class="container">
-      {% if data %}
-      <div class="alert alert-warning">
-        {{data}}
-      </div>
-      {% endif %}
-
+      
     <!--navigation -->
       <nav class="navbar">
           <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
           <p>Don't have an account yet. Click <a href="register.html">HERE</a> to create one.<p>
       </nav><!--navigation end-->
+      
+      {% if messages %}<!--warning start-->
+      <div class="alert alert-warning">
+        {{messages}}
+      </div>
+      {% endif %}<!--warning end-->
       
       <div class="row"> <!--salute -->
         <div class="col-lg-2"></div>
@@ -82,7 +83,7 @@
     </div><!-- Container End -->
 
     <!--JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
 
   </body>
 
