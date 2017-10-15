@@ -1,6 +1,4 @@
-users = {}
-""" Initializing a global user dict"""
-
+users = {} #Initializing a global user dict
 class User(object):
     """
     Class for user functionionality
@@ -17,8 +15,9 @@ class User(object):
         if name != '' and email != ''and password != '' and cpassword != '':
             if email not in users.keys():
                 if password == cpassword:
-                    users[email] = [name, password]
-                    return "Successfully registered"
+                    users[email] = {'name': name,'pass': password}
+                    print(users)
+                    return 1 #success,login page
                 else:
                     return "Password dont match"
             else:
@@ -49,10 +48,3 @@ class User(object):
                 return "Email not registered"
         else:
             return "Email cant be blank"
-
-
-gilo = User()
-gilo.registration ("gilo", "gmacom", "ki", "ki")
-gilo.login ("gmacom", "ki")
-
-gilo.resetpassword("gilo", "gmacom", "wa", "wa")
