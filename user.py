@@ -16,6 +16,7 @@ class User(object):
             if email not in users_lists.keys():
                 if password == cpassword:
                     users_lists[email] = {'name': name,'password': password}
+                    print (users_lists)
                     return 1 #success,login page
                 else:
                     return 2 #Password dont match
