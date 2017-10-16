@@ -1,8 +1,12 @@
-from flask import render_template, request
+from flask import render_template, request, session
 from app import app
-from user import User
+from user import User, users_lists
+from shoppinglist import Shoppinglist, my_lists
 
 user_details = User()
+added_list = Shoppinglist()
+
+app.secret_key = 'why would I tell you my secret key?'
 
 @app.route('/')
 def index():
@@ -19,7 +23,7 @@ def registration():
         registered_user = user_details.registration(name, email, password, cpassword)
 
         if registered_user == 1: #successfully logged in
-        	return render_template('login.html')
+            return render_template('login.html')
 
         elif registered_user == 2:#Password dont match
             msg = "Passwords don't match, try again"
@@ -35,14 +39,15 @@ def registration():
 
     return render_template('register.html')
 
-@app.route('/login/', methods=['GET','POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
     """User login requests"""
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         details = user_details.login(email, password)
-
+        owner = users_lists[email]
+    
         if details == 5: #Login successfull
             return render_template('create-shopping-list.html')
             
@@ -60,7 +65,11 @@ def login():
 def create_list():
     """Create shopping list"""
     if request.method == 'POST':
-    	title = request.form['title']
-    	description = request.form['description']
+        title = request.form['title']
+        description = request.form['description']
+        gilolist = added_list.create_list(owner, title, description)
+        
+        if glist == 8:
+          return render_template('index.html')
         
     return render_template('create-shopping-list.html')
