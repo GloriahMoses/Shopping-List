@@ -1,7 +1,7 @@
 from user import users
 shopping_lists = {}
 
-class shoppinglist(object):
+class Shoppinglist(object):
 	"""
     Class for user functionionality
     """
@@ -18,7 +18,8 @@ class shoppinglist(object):
 		"""create list method"""
 		if description != ''and title != '':
 			if title not in my_lists.keys():
-				self.my_lists[title] =[description, owner]
+				self.my_lists[owner] =[title, description]
+				print (my_lists)
 				return "Successfully created"
 			else:
 				return "List already exists"
@@ -28,12 +29,11 @@ class shoppinglist(object):
 	def add_items(self, title, name, price, quantity):
 		"""add items method"""
 		if title != '' and name != '' and price != '' and quantity != '':
-			self.items[title] = {
-			name: [price, quantity]
-			}
+			self.items[title] = {name: [price, quantity]}
 		else:
 			return "Fill in all the details"
 
 
-
+"""gg = Shoppinglist()
+gilo.create_list ("gg", "B2S", "going to school")"""
 
