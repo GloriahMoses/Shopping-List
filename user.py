@@ -10,6 +10,7 @@ class User(object):
         self.email = email
         self.password = password
 
+
     def registration(self, name, email, password, cpassword):
         """registration method"""
         if name != '' and email != ''and password != '' and cpassword != '':
