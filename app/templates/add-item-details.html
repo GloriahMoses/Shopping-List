@@ -11,12 +11,12 @@
     <title>Create</title>
 
     <!-- CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet" />
 
   </head>
 
-  <body background="images/bg.jpg" width= "100%">
+  <body background="../static/images/bg.jpg" width= "100%">
 
     <!-- Container start -->
     <div class="container">
@@ -38,18 +38,18 @@
           </div>
           <h5>Item details</h5>
           <div class="form"><!--Form start-->
-            <form action="" method="">
+            <form action={{url_for('add')}} method="POST">
 
               <div class="form-group"><!--Item Name start-->
-                <input type="text" id="item-name" class="form-control" placeholder="Item Name">
+                <input type="text" name="item-name" class="form-control" placeholder="Item Name">
               </div> <!--Item Name end-->
 
               <div class="form-group"><!--Quantity-->
-                <input type="text" id="Quantity" class="form-control" placeholder="Quantity">
+                <input type="text" name="Quantity" class="form-control" placeholder="Quantity">
               </div> <!--Quantity end-->
 
               <div class="form-group"><!--Budget start-->
-                <input type="text" id="estimated-budget" class="form-control" placeholder="Estimated Budget">
+                <input type="text" name="estimated-budget" class="form-control" placeholder="Estimated Budget">
               </div> <!--Budget end-->
 
               <div class="form-group"><!--submit start-->
@@ -72,8 +72,8 @@
     </div><!-- Container End -->
 
     <!-- JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/custom.js"></script>
 
   </body>
 
