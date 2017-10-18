@@ -78,11 +78,12 @@ def add():
     if request.method == 'POST':
         name = request.form['item-name']
         price = request.form['item-name']
-        quantity = request.form['Quantity']
+        quantity = request.form['quantity']
         budget = request.form['estimated-budget']
-        list_items = (name, price, quantity, budget)
+        owner = session['email']
+        list_items = (name, price, quantity, budget, owner)
 
-        if list_items == 1:
+        if list_items == 9:
            return render_template("view-shopping-list.html")
             
     return render_template("add-item-details.html")
