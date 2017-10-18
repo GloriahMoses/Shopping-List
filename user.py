@@ -49,10 +49,4 @@ class User(object):
                 return "Email not registered"
         else:
             return "Email cant be blank"
-
-
-"""gilo = User()
-gilo.registration( (input("name:")),  (input("email:")), (input("passw:")), (input("cpass:")))
-
-gilo.login( (input("email:")), (input("pass:")) )
-"""
+            
