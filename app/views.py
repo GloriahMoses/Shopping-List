@@ -1,10 +1,10 @@
 from flask import render_template, request, session
 from app import app
-from user import User, users_lists
-from shoppinglist import Shoppinglist, my_lists
+from user import User
+from shoppinglist import Shoppinglist
 
 user_details = User()
-added_list = Shoppinglist()
+userlist= Shoppinglist()
 
 app.secret_key = 'why would I tell you my secret key?'
 
@@ -45,8 +45,8 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        session['email'] = email
         details = user_details.login(email, password)
-        owner = users_lists[email]
     
         if details == 5: #Login successfull
             return render_template('create-shopping-list.html')
@@ -60,16 +60,33 @@ def login():
           return render_template('login.html', messages = msg)
 
     return render_template('login.html')
-    
-@app.route('/create/', methods=['GET', 'POST'])
-def create_list():
-    """Create shopping list"""
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
     if request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
-        gilolist = added_list.create_list(owner, title, description)
-        
-        if glist == 8:
-          return render_template('index.html')
-        
+        title = request.form['shopping-list']
+        description = request.form['list-description']
+        owner = session['email']
+        me_list =userlist.create(title,description,owner)
+        if me_list == 8:
+            return render_template("add-item-details.html")
+
     return render_template('create-shopping-list.html')
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    if request.method == 'POST':
+        name = request.form['item-name']
+        price = request.form['item-name']
+        quantity = request.form['Quantity']
+        budget = request.form['estimated-budget']
+        list_items = (name, price, quantity, budget)
+
+        if list_items == 1:
+           return render_template("view-shopping-list.html")
+            
+    return render_template("add-item-details.html")
+
+@app.route('/view', methods=['GET', 'POST'])
+def view():
+    return render_template("view-shopping-list.html")
