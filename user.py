@@ -16,9 +16,12 @@ class User(object):
         if name != '' and email != ''and password != '' and cpassword != '':
             if email not in users_lists.keys():
                 if password == cpassword:
-                    users_lists[email] = {'name': name,'password': password}
-                    print (users_lists)
-                    return 1 #success,login page
+                    if len(password) >= 6:
+                        users_lists[email] = {'name': name,'password': password}
+                        print (users_lists)
+                        return 1 #success,login page
+                    else:
+                        return 12
                 else:
                     return 2 #Password dont match
             else:
@@ -49,4 +52,10 @@ class User(object):
                 return "Email not registered"
         else:
             return "Email cant be blank"
-            
+
+
+"""gilo = User()
+gilo.registration( (input("name:")),  (input("email:")), (input("passw:")), (input("cpass:")))
+
+gilo.login( (input("email:")), (input("pass:")) )
+"""
