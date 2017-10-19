@@ -1,20 +1,20 @@
 from user import User
 from shoppinglist import Shoppinglist
-item_dict = {}
 
-class Items(object):
+item_lists = {}
+class Shoppingitems(object):
 
-	def __init__(self, title, owner):
+	def __init__(self, title=None, owner=None ):
+		""" Initializing variables"""
 		self.title = title
 		self.owner = owner
 
-
-	def add(self, title, name, price, quantity):
+	def add(self,title, name, quantity, budget, owner):
 			"""add items method"""
-			if title != '' and name != '' and price != '' and quantity != '':
-				item_dict[title] = {"name":name, 'price':price, 'quantity': quantity, 'budget':budget, 'owner':owner}
-				print (item_dict)
-				return 9
-			else:
-				return "Fill in all the details"
-
+			if name != '' and quantity !='' and budget !='':
+				if name not in item_lists:
+					self.title = title
+					item_lists[title] = {'name': name, 'quantity': quantity, 'budget': budget}
+					print (item_lists)
+					print(title)
+					return 9
