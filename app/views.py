@@ -2,9 +2,11 @@ from flask import render_template, request, session
 from app import app
 from user import User
 from shoppinglist import Shoppinglist
+from items import Shoppingitems
 
 user_details = User()
 userlist= Shoppinglist()
+itemlist = Shoppingitems()
 
 app.secret_key = 'why would I tell you my secret key?'
 
@@ -37,6 +39,10 @@ def registration():
             msg = "All fields are required, try again"
             return render_template('register.html', messages = msg)
 
+        elif registered_user == 12:#Fill in all the fields
+            msg = "Your password should be at least 6 characters long"
+            return render_template('register.html', messages = msg)
+        
     return render_template('register.html')
 
 @app.route('/login', methods=['GET','POST'])
@@ -49,7 +55,7 @@ def login():
         details = user_details.login(email, password)
     
         if details == 5: #Login successfull
-            return render_template('create-shopping-list.html')
+            return render_template('shopping-lists.html')
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -61,6 +67,11 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/shopppinglists', methods = ['GET', 'POST'])
+def displaylist():
+    return render_template('shopping-lists.html')
+
+
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
@@ -68,25 +79,28 @@ def create():
         description = request.form['list-description']
         owner = session['email']
         me_list =userlist.create(title,description,owner)
+        title = title #['title']
+        description = description
         if me_list == 8:
-            return render_template("add-item-details.html")
+            return render_template("add-item-details.html", owner=owner, title=title)
 
     return render_template('create-shopping-list.html')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
+        title = ['title']
         name = request.form['item-name']
-        price = request.form['item-name']
         quantity = request.form['quantity']
-        budget = request.form['estimated-budget']
+        budget = request.form['budget']
         owner = session['email']
-        list_items = (name, price, quantity, budget, owner)
+        list_items =itemlist.add(name, quantity, budget, owner, title)
 
         if list_items == 9:
-           return render_template("view-shopping-list.html")
-            
+            return render_template("view-shopping-list.html", description = description )
+
     return render_template("add-item-details.html")
+
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
