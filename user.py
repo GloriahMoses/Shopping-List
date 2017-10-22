@@ -1,4 +1,5 @@
-users_lists = {} #Initializing a global user dict
+users_lists = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
+
 class User(object):
     """
     Class for user functionionality
@@ -9,7 +10,6 @@ class User(object):
         self.name = name
         self.email = email
         self.password = password
-
 
     def registration(self, name, email, password, cpassword):
         """registration method"""
@@ -31,13 +31,16 @@ class User(object):
 
     def login(self, email, password):
         """ Login method"""
-        if email in users_lists.keys():
-            if password == users_lists[email]['password']:
-                return 5 #Login successfull
+        if email != ''and password != '':
+            if email in users_lists.keys():
+                if password == users_lists[email]['password']:
+                    return 5 #Login successfull
+                else:
+                    return 6 #Wrong password
             else:
-                return 6 #Wrong password
+                return 7 #Invalid Email
         else:
-            return 7 #Invalid Email
+            return 4 #Fill in all the fields
 
     def resetpassword(self, name, email, npassword, ncpassword):
         """Reset password method """
@@ -52,10 +55,3 @@ class User(object):
                 return "Email not registered"
         else:
             return "Email cant be blank"
-
-
-"""gilo = User()
-gilo.registration( (input("name:")),  (input("email:")), (input("passw:")), (input("cpass:")))
-
-gilo.login( (input("email:")), (input("pass:")) )
-"""
