@@ -41,6 +41,12 @@
             <h4>
               {{ title }}
             </h4>
+
+            {% if description %}
+            {{description}}
+            {% endif %}
+
+
           </div>
 
           <div class="delete-add">
@@ -61,25 +67,18 @@
           </div><!--End Shoping list desc -->
 
           <table style="width:100%">
-          
-            <!-- table header -->
-            {% if item_lists %}
-            <tr>
-               {% for key in item_lists[name] %}
-               <th> {{ key }} </th>
-               {% endfor %}
-            </tr>
-            {% endif %}
-
-            <!-- table rows -->
-            {% for dict_item in item_lists %}
-            <tr>
-               {% for value in item_lists[quantity] %}
-               <td> {{ value }} </td>
-               {% endfor %}
-            </tr>
-            {% endfor %}
+          <tr>
+          <th>Name</th>
+          <th>Price</th>
+          </tr>
+          {% for items in items_dict %}
+          <tr>
+          <td>{{ items[" name "] }}</td>
+          <td>{{ items[" quantity "] }}</td>
+          </tr>
+          {% endfor %}
           </table>
+
 
           <footer> <!--start footer -->
       <div class="row">
@@ -96,9 +95,10 @@
     </div><!-- Container End -->
 
     <!--JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/custom.js"></script>
 
   </body>
 
 </html>
+
