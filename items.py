@@ -1,7 +1,7 @@
 from user import User
 from shoppinglist import Shoppinglist
 
-item_lists = {}
+items_dict = {}
 class Shoppingitems(object):
 
 	def __init__(self, title=None, owner=None ):
@@ -12,9 +12,8 @@ class Shoppingitems(object):
 	def add(self,title, name, quantity, budget, owner):
 			"""add items method"""
 			if name != '' and quantity !='' and budget !='':
-				if name not in item_lists:
-					self.title = title
-					item_lists[title] = {'name': name, 'quantity': quantity, 'budget': budget}
-					print (item_lists)
-					print(title)
+				if name not in items_dict:
+					items_dict[title] = {'Name': name, 'Quantity': quantity, 'Budget': budget}
+					print (items_dict)
 					return 9
+				print ("anything")
