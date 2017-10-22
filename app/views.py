@@ -71,7 +71,6 @@ def login():
 def displaylist():
     return render_template('shopping-lists.html')
 
-
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
@@ -79,29 +78,30 @@ def create():
         description = request.form['list-description']
         owner = session['email']
         me_list =userlist.create(title,description,owner)
-        title = title #['title']
+        title = title
         description = description
         if me_list == 8:
-            return render_template("add-item-details.html", owner=owner, title=title)
+            return render_template("add-item-details.html", owner=owner, title=title, description = description)
 
     return render_template('create-shopping-list.html')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        title = ['title']
+        title = userlist.shoppinglist[session['email']]['Title']
         name = request.form['item-name']
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
-        list_items =itemlist.add(name, quantity, budget, owner, title)
+        items_dict =itemlist.add(title, name, quantity, budget, owner)
 
-        if list_items == 9:
-            return render_template("view-shopping-list.html", description = description )
+        if items_dict == 9:
+            return render_template("view-shopping-list.html", name = name, quantity = quantity, budget = budget, owner = owner)
 
     return render_template("add-item-details.html")
 
-
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    return render_template("view-shopping-list.html")
+    if request.method == 'POST':
+        items_dict = [' items_dict']
+        return render_template("view-shopping-list.html")
