@@ -42,11 +42,6 @@
               {{ title }}
             </h4>
 
-            {% if description %}
-            {{description}}
-            {% endif %}
-
-
           </div>
 
           <div class="delete-add">
@@ -69,14 +64,17 @@
           <table style="width:100%">
           <tr>
           <th>Name</th>
-          <th>Price</th>
+          <th>Quantity</th>
+          <th>Est price</th>
           </tr>
-          {% for items in items_dict %}
+          {% for title in range(items_dict) %}
           <tr>
-          <td>{{ items[" name "] }}</td>
-          <td>{{ items[" quantity "] }}</td>
+          <td>{{ [item_name] }}</td>
+          <td>{{title['Quantity']}}</td>
+          <td>title.Budget</td>
           </tr>
           {% endfor %}
+
           </table>
 
 
