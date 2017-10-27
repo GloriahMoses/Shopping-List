@@ -92,7 +92,7 @@ def create():
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        title = ['title']
+        title = userlist.shoppinglist[session['email']]['Title']
         #title = userlist.owner[title]
         item_name = request.form['item_name']
         quantity = request.form['quantity']
@@ -101,8 +101,9 @@ def add():
         items_dict =itemlist.add(title, item_name, quantity, budget)
 
         if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = items_dict)
-
+            return render_template("view-shopping-list.html", items_dict = itemlist.items_dict)
+        else:
+            print(items_dict)
     return render_template('add-item-details.html')
 
 @app.route('/view', methods=['GET', 'POST'])
