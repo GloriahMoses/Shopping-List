@@ -1,4 +1,4 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect, url_for
 from app import app
 from user import User
 from shoppinglist import Shoppinglist
@@ -8,7 +8,7 @@ user_details = User()
 userlist= Shoppinglist()
 itemlist = Shoppingitems()
 
-app.secret_key = 'why would I tell you my secret key?'
+app.secret_key = 'secret key'
 
 @app.route('/')
 def index():
@@ -69,7 +69,12 @@ def login():
 
 @app.route('/shopppinglists', methods = ['GET', 'POST'])
 def displaylist():
-    return render_template('shopping-lists.html')
+    if request.method == 'GET':
+        title = request.args.get('title')
+        owner = request.args.get('owner')
+        output = userlist.read_list(title, owner)
+
+    return render_template('shopping-lists.html', output)
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
@@ -78,30 +83,29 @@ def create():
         description = request.form['list-description']
         owner = session['email']
         me_list =userlist.create(title,description,owner)
-        title = title
-        description = description
+
         if me_list == 8:
-            return render_template("add-item-details.html", owner=owner, title=title, description = description)
+            return render_template("add-item-details.html")
 
     return render_template('create-shopping-list.html')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        title = userlist.shoppinglist[session['email']]['Title']
-        name = request.form['item-name']
+        title = ['title']
+        #title = userlist.owner[title]
+        item_name = request.form['item_name']
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
-        items_dict =itemlist.add(title, name, quantity, budget, owner)
+        items_dict =itemlist.add(title, item_name, quantity, budget)
 
         if items_dict == 9:
-            return render_template("view-shopping-list.html", name = name, quantity = quantity, budget = budget, owner = owner)
+            return render_template("view-shopping-list.html", items_dict = items_dict)
 
-    return render_template("add-item-details.html")
+    return render_template('add-item-details.html')
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    if request.method == 'POST':
-        items_dict = [' items_dict']
-        return render_template("view-shopping-list.html")
+    if request.method == 'GET':
+        return render_template("view-shopping-list.html", items_dict = zip(items_dict))
