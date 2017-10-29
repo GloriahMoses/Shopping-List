@@ -2,11 +2,9 @@ from flask import render_template, request, session, redirect, url_for
 from app import app
 from user import User
 from shoppinglist import Shoppinglist
-from items import Shoppingitems
 
 user_details = User()
 userlist= Shoppinglist()
-itemlist = Shoppingitems()
 
 app.secret_key = 'secret key'
 
@@ -14,7 +12,7 @@ app.secret_key = 'secret key'
 def index():
     return render_template("index.html")
 
-@app.route('/register/', methods=['GET','POST'])
+@app.route('/register', methods=['GET','POST'])
 def registration():
     """User registration requests"""
     if request.method == 'POST':
@@ -67,41 +65,31 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/shopppinglists', methods = ['GET', 'POST'])
-def displaylist():
-    if request.method == 'GET':
-        title = request.args.get('title')
-        owner = request.args.get('owner')
-        output = userlist.read_list(title, owner)
-
-    return render_template('shopping-lists.html', output)
-
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
         title = request.form['shopping-list']
         description = request.form['list-description']
         owner = session['email']
-        me_list =userlist.create(title,description,owner)
+        me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
-            return render_template("add-item-details.html")
+            return render_template("add-item-details.html", title = title)
 
     return render_template('create-shopping-list.html')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        title = userlist.shoppinglist[session['email']]['Title']
-        #title = userlist.owner[title]
+        title = request.form['title']
         item_name = request.form['item_name']
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
-        items_dict =itemlist.add(title, item_name, quantity, budget)
+        items_dict = userlist.add(title, item_name, quantity, budget)
 
         if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = itemlist.items_dict)
+            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
         else:
             print(items_dict)
     return render_template('add-item-details.html')
