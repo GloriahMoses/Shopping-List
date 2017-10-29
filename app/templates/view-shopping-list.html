@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Coustard' rel='stylesheet' type='text/css'>
+
+    <title>Shopping List</title>
+
+    <!--CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet" />
+
+  </head>
+
+  <body background="../static/images/bg.jpg" width= "100%">
+
+    <!-- Container start -->
+    <div class="container">
+      
+      <!--navigation -->
+      <nav class="navbar">
+          <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
+          <li><a href="create-shopping-list.html">Create List</a></li>
+          <li><a href="shopping-lists.html">View Lists</a></li>
+          <li><a href="#">Log Out</a></li>
+      </nav><!--navigation end-->
+
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8"><!-- body -->
+
+          <div class="title">
+            <h1>Shopping List:</h1>
+          </div>
+
+          <div class="tagline">
+            <h4>
+              {% for title in items_dict %}
+              {{ title }}
+              {% endfor %}
+            </h4>
+
+          </div>
+
+          <div class="delete-add">
+            <div class="navbar">
+               <li><a href="add-item-details.html">Add More Items</a></li>
+               <li><a href="#">Delete list</a></li>
+            </div>
+
+          <div>
+             
+          </div>
+
+          <div id="list-desc"><!-- Shoping list desc -->
+        
+            <h4>
+              {{ description }}
+            </h4>
+          </div><!--End Shoping list desc -->
+
+          <table style="width:100%">
+          <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Budget</th>
+          </tr>
+          {% for title in items_dict %}s
+          <tr>
+          <td>{{ items_dict[title]['Name'] }}</td>
+          <td>{{ items_dict[title]['Quantity'] }}</td>
+          <td>{{ items_dict[title]['Budget'] }}</td>
+          </tr>
+          {% endfor %}
+
+          </table>
+
+
+          <footer> <!--start footer -->
+      <div class="row">
+        <div class="col-lg-4 text-center"></div>
+        <div class="col-lg-4 text-center">
+          <div class="footer-4">
+              <p>&copy; 2017 Shopping List</p>
+          </div>
+        </div>
+        </footer><!--End footer -->
+
+        </div>
+        
+    </div><!-- Container End -->
+
+    <!--JavaScript -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/custom.js"></script>
+
+  </body>
+
+</html>
