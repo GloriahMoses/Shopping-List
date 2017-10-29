@@ -24,44 +24,33 @@
       <!--navigation -->
       <nav class="navbar">
           <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
-          <li><a href="create-shopping-list.html">Create List</a></li>
-          <li><a href="shopping-lists.html">View Lists</a></li>
+          <li><a href=""{{url_for('create')}}"">Create List</a></li>
           <li><a href="#">Log Out</a></li>
       </nav><!--navigation end-->
 
       <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8"><!-- body -->
+        <div class=""><!-- body -->
 
           <div class="title">
-            <h1>Shopping List:</h1>
+            <h1>Shopping Lists:</h1>
           </div>
-
-          <div class="tagline">
-            <h4>
-              {% for title in items_dict %}
-              {{ title }}
-              {% endfor %}
-            </h4>
-
-          </div>
-
-          <div class="delete-add">
-            <div class="navbar">
-               <li><a href="add-item-details.html">Add More Items</a></li>
-               <li><a href="#">Delete list</a></li>
+          <div class="row">
+          {% for title1 in lists.keys() %}
+          <div class="col-lg-6">
+            
+            <div>
+              {{ title1 }}
             </div>
 
-          <div>
-             
-          </div>
+            <div>
+              {{title1.Description}}
+            </div>
 
-          <div id="list-desc"><!-- Shoping list desc -->
-        
-            <h4>
-              {{ description }}
-            </h4>
-          </div><!--End Shoping list desc -->
+
+            <div class="navbar">
+               <li><a href="{{ url_for('add') }}">Add More Items</a></li>
+               <li><a href="#">Delete list</a></li>
+            </div>
 
           <table style="width:100%">
           <tr>
@@ -69,15 +58,20 @@
           <th>Quantity</th>
           <th>Budget</th>
           </tr>
-          {% for title in items_dict %}s
+          {% for title in items_dict.keys() %}
+          {% if title == title1 %}
           <tr>
           <td>{{ items_dict[title]['Name'] }}</td>
           <td>{{ items_dict[title]['Quantity'] }}</td>
           <td>{{ items_dict[title]['Budget'] }}</td>
           </tr>
+          {% endif %}
           {% endfor %}
 
           </table>
+        </div>
+        {% endfor %}
+       </div>
 
 
           <footer> <!--start footer -->
@@ -101,3 +95,4 @@
   </body>
 
 </html>
+
