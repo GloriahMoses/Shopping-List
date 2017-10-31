@@ -12,7 +12,7 @@ app.secret_key = 'secret key'
 def index():
     return render_template("index.html")
 
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register/', methods=['GET','POST'])
 def registration():
     """User registration requests"""
     if request.method == 'POST':
@@ -49,11 +49,11 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        session['email'] = email
         details = user_details.login(email, password)
     
         if details == 5: #Login successfull
-            return render_template('shopping-lists.html')
+            session['email'] = request.form['email']
+            return redirect(url_for('view', items_dict = userlist.items_dict, lists = userlist.shoppinglist))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -72,16 +72,16 @@ def create():
         description = request.form['list-description']
         owner = session['email']
         me_list = userlist.create(title,description,owner)
+        count = 0
 
         if me_list == 8:
             return render_template("add-item-details.html", title = title)
 
     return render_template('create-shopping-list.html')
 
-@app.route('/add', methods=['GET', 'POST'])
-def add():
+@app.route('/add/<title>', methods=['GET', 'POST'])
+def add(title):
     if request.method == 'POST':
-        title = request.form['title']
         item_name = request.form['item_name']
         quantity = request.form['quantity']
         budget = request.form['budget']
@@ -92,9 +92,17 @@ def add():
             return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
         else:
             print(items_dict)
-    return render_template('add-item-details.html')
+    return render_template('add-item-details.html', title = title)
+
+@app.route('/delete/<title>')
+def delete_list(title):
+    for list_name in userlist.shoppinglist.keys():
+        if list_name==title:
+            userlist.shoppinglist.pop(list_name)
+            userlist.items_dict.pop(list_name)
+            return redirect(url_for('view'))
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
     if request.method == 'GET':
-        return render_template("view-shopping-list.html", items_dict = zip(items_dict))
+        return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
