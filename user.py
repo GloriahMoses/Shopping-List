@@ -1,3 +1,4 @@
+
 class User(object):
     """
     Class for user functionionality

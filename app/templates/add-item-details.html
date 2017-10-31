@@ -40,9 +40,7 @@
 
           </div>
             <h4>
-              {% for title in items_dict %}
               {{ title }}
-              {% endfor %}
             </h4>
 
           <h5>Item details</h5>
@@ -61,6 +59,9 @@
               <div class="form-group"><!--Budget start-->
                 <input type="text" name="budget" class="form-control" placeholder="Estimated Budget">
               </div> <!--Budget end-->
+              <div>
+                <input type="hidden"  class="form-control" name="title" value="{{ title }}">
+              </div>
 
               <div class="form-group"><!--submit start-->
                 <input type="submit" id="submit" class="btn btn-info" value="ADD">
