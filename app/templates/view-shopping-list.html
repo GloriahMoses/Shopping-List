@@ -23,35 +23,35 @@
       
       <!--navigation -->
       <nav class="navbar">
-          <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
-          <li><a href=""{{url_for('create')}}"">Create List</a></li>
+          <a class="navbar-brand" href="{{url_for('index')}}"><h3>Home</h3></a>
+          <li><a href="/create">Create List</a></li>
           <li><a href="#">Log Out</a></li>
       </nav><!--navigation end-->
 
       <div class="row">
-        <div class=""><!-- body -->
+        <div class="col-lg-12"><!-- body -->
 
           <div class="title">
             <h1>Shopping Lists:</h1>
           </div>
+
+          {{count}}
           <div class="row">
           {% for title1 in lists.keys() %}
           <div class="col-lg-6">
             
             <div>
-              {{ title1 }}
+                {{ title1 }} 
             </div>
-
+              {{ title1 [Description] }}
             <div>
-              {{title1.Description}}
+              
             </div>
 
-
-            <div class="navbar">
-               <li><a href="{{ url_for('add') }}">Add More Items</a></li>
-               <li><a href="#">Delete list</a></li>
+            <div class="delete-add">
+               <a href="{{ url_for('add', title=title1) }}">Add More Items</a>
+               <a href="{{ url_for('delete_list', title=title1) }}">Delete list</a>
             </div>
-
           <table style="width:100%">
           <tr>
           <th>Name</th>
@@ -60,11 +60,13 @@
           </tr>
           {% for title in items_dict.keys() %}
           {% if title == title1 %}
+          {% for item in items_dict[title].keys() %}
           <tr>
-          <td>{{ items_dict[title]['Name'] }}</td>
-          <td>{{ items_dict[title]['Quantity'] }}</td>
-          <td>{{ items_dict[title]['Budget'] }}</td>
+          <td>{{ item }}</td>
+          <td>{{ items_dict[title][item][0] }}</td>
+          <td>{{ items_dict[title][item][1] }}</td>
           </tr>
+          {% endfor %}
           {% endif %}
           {% endfor %}
 
@@ -72,7 +74,6 @@
         </div>
         {% endfor %}
        </div>
-
 
           <footer> <!--start footer -->
       <div class="row">
