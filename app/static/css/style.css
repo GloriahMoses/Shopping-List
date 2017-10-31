@@ -35,7 +35,7 @@ h3 {
 
 .title-main {
   position: relative; 
-  margin: 120px auto 15px auto;
+  margin: 0px auto 15px auto;
   text-align: center;
   font-size: 72px;
   }
@@ -73,10 +73,14 @@ a:hover{
   color: #ccc;
 }
 
-.delete-add .navbar{
+.delete-add {
   background-color: transparent;
 }
 
+.delete-add a{
+  margin-left: 2em;
+  float: left;
+}
 table, th, td {
     border: 1px solid white;
     border-collapse: collapse;
@@ -90,7 +94,7 @@ th, td {
 }
 
 .footer{
-  margin-top: 3.2em;
+  margin-top: 3em;
   bottom: 0;
   font-style: italic;
   color: #17a2b8;
