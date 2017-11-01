@@ -24,9 +24,9 @@
     <!--navigation -->
       <nav class="navbar">
           <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
+            <a class="navbar-brand" href="{{url_for('index')}}"><h3>Home</h3></a>
           </div>
-          <p>Already have an account, click <a href="login.html">HERE</a> to login.<p>
+          <p>Already have an account, click <a href="{{url_for('login')}}">HERE</a> to login.<p>
       </nav><!--navigation end-->
       
       {% if messages %}<!--warning start-->
