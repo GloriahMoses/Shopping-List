@@ -1,4 +1,4 @@
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, flash
 from app import app
 from user import User
 from shoppinglist import Shoppinglist
@@ -75,7 +75,11 @@ def create():
         count = 0
 
         if me_list == 8:
-            return render_template("add-item-details.html", title = title)
+            return render_template("add-item-details.html", title = title, count = count)
+
+        if me_list == 10:
+            msg = "List already exists"
+            return render_template("create-shopping-list.html", messages = msg)
 
     return render_template('create-shopping-list.html')
 
@@ -96,13 +100,32 @@ def add(title):
 
 @app.route('/delete/<title>')
 def delete_list(title):
-    for list_name in userlist.shoppinglist.keys():
-        if list_name==title:
-            userlist.shoppinglist.pop(list_name)
-            userlist.items_dict.pop(list_name)
-            return redirect(url_for('view'))
+    if request.method == 'GET':
+        for list_name in userlist.shoppinglist.keys():
+            if list_name==title:
+                userlist.shoppinglist.pop(list_name)
+                userlist.items_dict.pop(list_name)
+                return redirect(url_for('view'))
+
+@app.route('/delete_item/<itemname>')
+def delete_item(itemname):
+    if request.method == 'GET':
+        for title in userlist.items_dict.keys():
+            for item in userlist.items_dict[title].keys():
+                if item == itemname:
+                    userlist.items_dict[title].pop(item)
+                    return redirect(url_for('view'))
+                continue
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
     if request.method == 'GET':
         return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
+
+@app.route('/logout')
+def logout():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    else:
+        session.pop('email')
+        return render_template("index.html")
