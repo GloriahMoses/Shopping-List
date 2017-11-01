@@ -45,7 +45,7 @@
 
           <h5>Item details</h5>
           <div class="form"><!--Form start-->
-            <form action="{{ url_for('add', title = title)}}" method="POST">
+            <form action="{{ url_for('add', title = title, itemname = itemname)}}" method="POST">
 
               <div class="form-group"><!--Item Name start-->
                 <input type="text" name="item_name" class="form-control" placeholder="Item Name">
@@ -60,6 +60,10 @@
               </div> <!--Budget end-->
               <div>
                 <input type="hidden"  class="form-control" name="title" value="{{ title }}">
+              </div>
+
+              <div>
+                <input type="hidden"  class="form-control" name="title" value="{{ itemname }}">
               </div>
 
               <div class="form-group"><!--submit start-->
