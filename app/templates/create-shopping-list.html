@@ -24,9 +24,15 @@
       <!--navigation -->
       <nav class="navbar">
           <a class="navbar-brand" href="index.html"><h3>Home</h3></a>
-          <li><a href="shopping-lists.html">View Lists</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li><a href="{{url_for('view')}}">View Lists</a></li>
+          <li><a href="{{url_for('logout')}}">Log Out</a></li>
       </nav><!--navigation end-->
+
+      {% if messages %}<!--warning start-->
+      <div class="alert alert-warning">
+        {{messages}}
+      </div>
+      {% endif %}<!--warning end-->
 
       <div class="row"> <!--body -->
         <div class="col-lg-2"></div>
