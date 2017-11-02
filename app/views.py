@@ -1,4 +1,3 @@
-import os
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
 from user import User
