@@ -106,6 +106,7 @@ def delete_list(title):
                 userlist.shoppinglist.pop(list_name)
                 userlist.items_dict.pop(list_name)
                 return redirect(url_for('view'))
+    return render_template("view-shopping-list.html")
 
 @app.route('/delete_item/<itemname>')
 def delete_item(itemname):
@@ -116,6 +117,7 @@ def delete_item(itemname):
                     userlist.items_dict[title].pop(item)
                     return redirect(url_for('view'))
                 continue
+    return render_template("view-shopping-list.html")
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
