@@ -86,6 +86,7 @@ def create():
 
 @app.route('/add<title>', methods=['GET', 'POST'])
 def add(title):
+    title = title
     if request.method == 'POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
