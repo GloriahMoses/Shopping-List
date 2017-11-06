@@ -107,8 +107,7 @@ def delete_list(title):
                 userlist.shoppinglist.pop(list_name)
                 userlist.items_dict.pop(list_name)
                 return redirect(url_for('view'))
-    return render_template("view-shopping-list.html")
-
+                
 @app.route('/delete_item/<itemname>')
 def delete_item(itemname):
     if request.method == 'GET':
@@ -123,7 +122,10 @@ def delete_item(itemname):
 @app.route('/view', methods=['GET', 'POST'])
 def view():
     if request.method == 'GET':
-        return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
+        for current_owner in userlist.items_dict.keys():
+            if current_owner == session['email']:
+                return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
+    return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
 
 @app.route('/logout')
 def logout():
