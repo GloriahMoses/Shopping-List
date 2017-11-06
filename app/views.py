@@ -49,6 +49,7 @@ def login():
     """User login requests"""
     if request.method == 'POST':
         email = request.form['email']
+        session['owner'] = request.form['email']
         password = request.form['password']
         details = user_details.login(email, password)
     
@@ -91,10 +92,11 @@ def add(title):
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
+        title = request.form['title']
         items_dict = userlist.add(title, item_name, quantity, budget)
 
         if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist, title = title)
+            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
         else:
             print(items_dict)
     return render_template('add-item-details.html', title = title)
@@ -124,13 +126,15 @@ def view():
     if request.method == 'GET':
         for current_owner in userlist.items_dict.keys():
             if current_owner == session['email']:
-                return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
+                return render_template("view-shopping-list.html")
+
     return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
 
 @app.route('/logout')
 def logout():
-    if 'email' not in session:
-        return redirect(url_for('login'))
-    else:
-        session.pop('email')
-        return render_template("index.html")
+    if request.method == 'GET':
+        if 'email' not in session:
+            return redirect(url_for('login'))
+        else:
+            session.pop('owner', None)
+            return render_template("index.html")
