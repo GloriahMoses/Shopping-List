@@ -1,11 +1,15 @@
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
-from user import User
-from shoppinglist import Shoppinglist
+#from user import User
+import user
 
+#from shoppinglist import shoppinglists, Shoppinglist
+import shoppinglist
 
-user_details = User()
-userlist= Shoppinglist()
+user_details = user.User()
+userlist= shoppinglist.Shoppinglist()
+items = userlist.items_dict
+#items = shoppinglist.items_dict
 
 app.secret_key = 'secret key'
 
@@ -55,7 +59,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = userlist.items_dict, lists = userlist.shoppinglist))
+            return redirect(url_for('view', items_dict = items, lists = shoppinglist.shoppinglists))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -96,7 +100,7 @@ def add(title):
         items_dict = userlist.add(title, item_name, quantity, budget)
 
         if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
+            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
         else:
             print(items_dict)
     return render_template('add-item-details.html', title = title)
@@ -128,7 +132,7 @@ def view():
             if current_owner == session['email']:
                 return render_template("view-shopping-list.html")
 
-    return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
+    return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
 
 @app.route('/logout')
 def logout():
