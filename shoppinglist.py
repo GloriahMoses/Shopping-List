@@ -1,7 +1,7 @@
 from user import User
-shoppinglist = {}
 
 class Shoppinglist(object):
+	shoppinglist = {}
 	"""
     Class for shoppinglist functionionality
     """
@@ -15,8 +15,8 @@ class Shoppinglist(object):
 	def create(self, title, description, owner):
 		"""create list method"""
 		if description != ''and title != '':
-			if title not in shoppinglist.keys():
-				shoppinglist[title] = {'owner':owner, 'Description':description}
+			if title not in self.shoppinglist.keys():
+				self.shoppinglist[title] = {'owner':owner, 'Description':description}
 				return 8 #"Successfully created"
 			else:
 				return 10 #"List already exists"
