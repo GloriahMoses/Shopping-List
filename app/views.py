@@ -124,9 +124,7 @@ def delete_item(itemname):
 @app.route('/view', methods=['GET', 'POST'])
 def view():
     if request.method == 'GET':
-        for current_owner in userlist.items_dict.keys():
-            if current_owner == session['email']:
-                return render_template("view-shopping-list.html")
+        pass
 
     return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglist)
 
