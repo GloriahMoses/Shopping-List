@@ -1,5 +1,6 @@
 from user import User
 shoppinglists = {}
+items_dict = {}
 
 class Shoppinglist(object):
 	
@@ -11,7 +12,6 @@ class Shoppinglist(object):
 		self.title = title
 		self.description = description
 		self.owner = owner
-		self.items_dict = {}
 		
 	def create(self, title, description, owner):
 		"""create list method"""
@@ -27,11 +27,11 @@ class Shoppinglist(object):
 	def add(self,title, item_name, quantity, budget):
 			"""add items method and edit"""
 			if item_name != '' and quantity !='' and budget !='':
-				if title not in self.items_dict.keys():
-					self.items_dict[title] = {item_name: [quantity, budget]}
+				if title not in items_dict.keys():
+					items_dict[title] = {item_name: [quantity, budget]}
 					return 9
 				else:
-					self.items_dict[title][item_name] = [quantity, budget]
+					items_dict[title][item_name] = [quantity, budget]
 					return 9
 			else:
 				return 4
