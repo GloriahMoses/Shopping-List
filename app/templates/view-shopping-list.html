@@ -50,7 +50,7 @@
 
             <div class="delete-add">
               <input type="hidden" name="shopping-list" value="{{ title }}">
-               <a href="{{ url_for('add', title) }}">Add More Items</a>
+               <a href="{{ url_for('add', title=title1) }}">Add More Items</a>
               <a href="{{ url_for('delete_list', title=title1) }}" onclick="return confirm('Are you sure you want to delete this list?');">Delete list</a>
                
 
