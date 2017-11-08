@@ -8,7 +8,7 @@ import shoppinglist
 
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
-items = userlist.items_dict
+items = shoppinglist.items_dict
 #items = shoppinglist.items_dict
 
 app.secret_key = 'secret key'
@@ -59,7 +59,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = items, lists = userlist.items_dict))
+            return redirect(url_for('view', items_dict = items, lists = shoppinglist.shoppinglists))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -97,40 +97,39 @@ def add(title):
         budget = request.form['budget']
         owner = session['email']
         title = request.form['title']
-        items_dict = userlist.add(title, item_name, quantity, budget)
+        results = userlist.add(title, item_name, quantity, budget)
 
-        if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
+        if results == 9:
+            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
         else:
-            print(items_dict)
+            print(results)
     return render_template('add-item-details.html', title = title)
 
 @app.route('/delete/<title>')
 def delete_list(title):
     if request.method == 'GET':
-        for list_name in userlist.shoppinglist.keys():
+        for list_name in shoppinglist.shoppinglists.keys():
             if list_name==title:
-                userlist.shoppinglist.pop(list_name)
-                userlist.items_dict.pop(list_name)
+                shoppinglist.shoppinglists.pop(list_name)
+                items.pop(list_name)
                 return redirect(url_for('view'))
                 
 @app.route('/delete_item/<itemname>')
 def delete_item(itemname):
     if request.method == 'GET':
-        for title in userlist.items_dict.keys():
-            for item in userlist.items_dict[title].keys():
+        for title in items.keys():
+            for item in items[title].keys():
                 if item == itemname:
-                    userlist.items_dict[title].pop(item)
+                    items[title].pop(item)
                     return redirect(url_for('view'))
                 continue
     return render_template("view-shopping-list.html")
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    if request.method == 'GET':
+    if request.method == 'POST':
         pass
-
-    return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
+    return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
 
 @app.route('/logout')
 def logout():
@@ -138,6 +137,6 @@ def logout():
         if 'email' not in session:
             return redirect(url_for('login'))
         else:
-            session.pop('owner', None)
+            session.pop('email')
             return render_template("index.html")
         
