@@ -93,18 +93,16 @@ def create():
 def add(title):
     if request.method == 'GET':
         title = request.form['title']
-        if request.method == 'POST':
-            item_name = request.form['item_name']
-            quantity = request.form['quantity']
-            budget = request.form['budget']
-            owner = session['email']
-            title = title
-            results = userlist.add(title, item_name, quantity, budget)
-            
-            if results == 9:
-                return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
-            else:
-                print(results)
+    if request.method == 'POST':
+        item_name = request.form['item_name']
+        quantity = request.form['quantity']
+        budget = request.form['budget']
+        owner = session['email']
+        title = title
+        results = userlist.add(title, item_name, quantity, budget)
+
+        if results == 9:
+            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
     return render_template('add-item-details.html', title = title)
 
 @app.route('/delete/<title>')
