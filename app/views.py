@@ -78,10 +78,9 @@ def create():
         description = request.form['list-description']
         owner = session['email']
         me_list = userlist.create(title,description,owner)
-        count = 0
 
         if me_list == 8:
-            return render_template("add-item-details.html", title = title, count = count)
+            return render_template("add-item-details.html", title = title)
 
         if me_list == 10:
             msg = "List already exists"
@@ -92,7 +91,7 @@ def create():
 @app.route('/add/<title>', methods=['GET', 'POST'])
 def add(title):
     if request.method == 'GET':
-        title = request.form['title']
+        title = title1
     elif request.method == 'POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
@@ -101,7 +100,7 @@ def add(title):
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists, title = title)
     return render_template('add-item-details.html', title = title)
 
 @app.route('/delete/<title>')
