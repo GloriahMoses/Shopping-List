@@ -93,12 +93,11 @@ def create():
 def add(title):
     if request.method == 'GET':
         title = request.form['title']
-    if request.method == 'POST':
+    elif request.method == 'POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
-        title = title
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
