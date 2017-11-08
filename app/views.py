@@ -97,6 +97,7 @@ def add(title):
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
+        title = title
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
