@@ -127,8 +127,6 @@ def delete_item(itemname):
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    if request.method == 'POST':
-        pass
     return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
 
 @app.route('/logout')
