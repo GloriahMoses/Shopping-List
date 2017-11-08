@@ -92,13 +92,13 @@ def create():
 @app.route('/add/<title>', methods=['GET', 'POST'])
 def add(title):
     if request.method == 'GET':
-        title == title1
+        title = request.form['title']
         if request.method == 'POST':
             item_name = request.form['item_name']
             quantity = request.form['quantity']
             budget = request.form['budget']
             owner = session['email']
-            #title = request.form['title']
+            title = title
             results = userlist.add(title, item_name, quantity, budget)
             
             if results == 9:
