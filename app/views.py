@@ -1,7 +1,7 @@
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
 from user import User
-from shoppinglist import shoppinglists, Shoppinglist
+from shoppinglist import Shoppinglist
 
 user_details = User()
 userlist= Shoppinglist()
