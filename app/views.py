@@ -1,10 +1,10 @@
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
-from user import User
-from shoppinglist import Shoppinglist
+import user
+import shoppinglist
 
-user_details = User()
-userlist= Shoppinglist()
+user_details = user.User()
+userlist= shoppinglist.Shoppinglist()
 
 
 app.secret_key = 'secret key'
@@ -54,7 +54,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = items, lists = lists))
+            return redirect(url_for('view', items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -94,31 +94,28 @@ def add(title):
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            return redirect(url_for("view", items_dict = userlist.items_dict, lists = userlist.shoppinglists, ttle = title))
+            return redirect(url_for("view", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists, ttle = title))
     return render_template('add-item-details.html', ttle = title)
 
 @app.route('/delete/<title>')
 def delete_list(title):
-    if request.method == 'GET':
-        for list_name in lists.keys():
-            if list_name==title:
-                userlist.shoppinglists.pop(list_name)
-                userlist.items_dict.pop(list_name)
-                return redirect(url_for('view'))
+    for list_name in shoppinglist.shoppinglists.keys():
+        if list_name==title:
+            shoppinglist.shoppinglists.pop(list_name)
+            shoppinglist.items_dict.pop(list_name)
+            return redirect(url_for('view'))
                 
 @app.route('/delete_item/<itemname>')
 def delete_item(itemname):
-    if request.method == 'GET':
-        for title in items.keys():
-            for item in items[title].keys():
-                if item == itemname:
-                    userlist.shoppinglists[title].pop(item)
-                    return redirect(url_for('view'))
-    return render_template("view-shopping-list.html")
+    for title in shoppinglist.items_dict.keys():
+        for item in shoppinglist.items_dict[title].keys():
+            if item == itemname:
+                shoppinglist.shoppinglists[title].pop(item)
+                return redirect(url_for('view'))
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
+    return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = userlist.shoppinglists)
 
 @app.route('/logout')
 def logout():
