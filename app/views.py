@@ -75,7 +75,7 @@ def create():
         me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
-            return render_template("add-item-details.html", ttle = title)
+            return redirect(url_for("view"))
 
         if me_list == 10:
             msg = "List already exists"
@@ -83,8 +83,8 @@ def create():
 
     return render_template('create-shopping-list.html')
 
-@app.route('/add', methods=['GET', 'POST'])
-def add():
+@app.route('/add/<titleadd>', methods=['GET', 'POST'])
+def add(titleadd=None):
     if request.method == 'POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
@@ -94,24 +94,12 @@ def add():
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            return redirect(url_for("view", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists, ttleview = title))
-    return render_template('add-item-details.html')
+            return redirect(url_for("view"))
+    return render_template('add-item-details.html', ttle=titleadd)
 
-@app.route('/additem/<titleadd>', methods=['GET', 'POST'])
-def add_item():
-    if request.method == 'POST':
-        item_name = request.form['item_name']
-        quantity = request.form['quantity']
-        budget = request.form['budget']
-        owner = session['email']
-        title = request.form['title']
-        results = userlist.add(title, item_name, quantity, budget)
-
-        if results == 9:
-            return redirect(url_for("view", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists, ttleview = title))
 
 @app.route('/delete/<titledel>')
-def delete_list(titledel):
+def delete_list(titledel=None):
     for list_name in shoppinglist.shoppinglists.keys():
         if list_name==titledel:
             shoppinglist.shoppinglists.pop(list_name)
@@ -119,7 +107,7 @@ def delete_list(titledel):
             return redirect(url_for('view'))
                 
 @app.route('/delete_item/<itemname>')
-def delete_item(itemname):
+def delete_item(itemname=None):
     for title in shoppinglist.items_dict.keys():
         for item in shoppinglist.items_dict[title].keys():
             if item == itemname:
