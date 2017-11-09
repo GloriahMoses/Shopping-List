@@ -83,8 +83,8 @@ def create():
 
     return render_template('create-shopping-list.html')
 
-@app.route('/add/<titleadd>', methods=['GET', 'POST'])
-def add(titleadd=None):
+@app.route('/add', methods=['GET', 'POST'])
+def add():
     if request.method == 'POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
@@ -95,7 +95,20 @@ def add(titleadd=None):
 
         if results == 9:
             return redirect(url_for("view", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists, ttleview = title))
-    return render_template('add-item-details.html', ttle = titleadd)
+    return render_template('add-item-details.html')
+
+@app.route('/additem/<titleadd>', methods=['GET', 'POST'])
+def add_item():
+    if request.method == 'POST':
+        item_name = request.form['item_name']
+        quantity = request.form['quantity']
+        budget = request.form['budget']
+        owner = session['email']
+        title = request.form['title']
+        results = userlist.add(title, item_name, quantity, budget)
+
+        if results == 9:
+            return redirect(url_for("view", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists, ttleview = title))
 
 @app.route('/delete/<titledel>')
 def delete_list(titledel):
