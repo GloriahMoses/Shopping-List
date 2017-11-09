@@ -8,8 +8,9 @@ import shoppinglist
 
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
-items = shoppinglist.items_dict
-#items = shoppinglist.items_dict
+users = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
+lists = {}
+items = {}
 
 app.secret_key = 'secret key'
 
@@ -28,6 +29,7 @@ def registration():
         registered_user = user_details.registration(name, email, password, cpassword)
 
         if registered_user == 1: #successfully logged in
+            users[email] = {'name': name,'password': password}
             return render_template('login.html')
 
         elif registered_user == 2:#Password dont match
@@ -53,13 +55,12 @@ def login():
     """User login requests"""
     if request.method == 'POST':
         email = request.form['email']
-        session['owner'] = request.form['email']
         password = request.form['password']
         details = user_details.login(email, password)
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = items, lists = shoppinglist.shoppinglists))
+            return redirect(url_for('view', items_dict = items, lists = lists))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -80,6 +81,7 @@ def create():
         me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
+            lists[title] = {'owner':owner, 'Description':description}
             return render_template("add-item-details.html", title = title)
 
         if me_list == 10:
@@ -90,26 +92,29 @@ def create():
 
 @app.route('/add/<title>', methods=['GET', 'POST'])
 def add(title):
-    if request.method == 'GET':
-        title = request.form['title']
-    elif request.method == 'POST':
+    if request.method == 'POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
         budget = request.form['budget']
         owner = session['email']
-        title = title
+        title = request.form['title']
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists, title = title)
-    return render_template('add-item-details.html', title = title)
+            if title not in items.keys():
+				items[title] = {item_name : [quantity, budget]}
+                return redirect(url_for("view", items_dict = items, lists = lists, title = title))
+			else:
+				items[title][item_name] = [quantity, budget]
+                return redirect(url_for("view", items_dict = items, lists = lists, title = title))
+    return render_template('add-item-details.html', ttle = title)
 
 @app.route('/delete/<title>')
 def delete_list(title):
     if request.method == 'GET':
-        for list_name in shoppinglist.shoppinglists.keys():
+        for list_name in lists.keys():
             if list_name==title:
-                shoppinglist.shoppinglists.pop(list_name)
+                lists.pop(list_name)
                 items.pop(list_name)
                 return redirect(url_for('view'))
                 
@@ -121,12 +126,11 @@ def delete_item(itemname):
                 if item == itemname:
                     items[title].pop(item)
                     return redirect(url_for('view'))
-                continue
     return render_template("view-shopping-list.html")
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
+    return render_template("view-shopping-list.html", items_dict = items, lists = lists)
 
 @app.route('/logout')
 def logout():
