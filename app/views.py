@@ -16,7 +16,7 @@ def index():
 @app.route('/register/', methods=['GET','POST'])
 def registration():
     """User registration requests"""
-    if request.method == 'POST':
+    if method.request == 'POST':
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
