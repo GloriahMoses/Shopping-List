@@ -102,10 +102,10 @@ def add(title):
 
         if results == 9:
             if title not in items.keys():
-				items[title] = {item_name : [quantity, budget]}
+                items[title] = {item_name : [quantity, budget]}
                 return redirect(url_for("view", items_dict = items, lists = lists, title = title))
-			else:
-				items[title][item_name] = [quantity, budget]
+            else:
+                items[title][item_name] = [quantity, budget]
                 return redirect(url_for("view", items_dict = items, lists = lists, title = title))
     return render_template('add-item-details.html', ttle = title)
 
