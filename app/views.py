@@ -1,16 +1,11 @@
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
-#from user import User
-import user
+from user import User
+from shoppinglist import shoppinglists, Shoppinglist
 
-#from shoppinglist import shoppinglists, Shoppinglist
-import shoppinglist
+user_details = User()
+userlist= Shoppinglist()
 
-user_details = user.User()
-userlist= shoppinglist.Shoppinglist()
-users = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
-lists = {}
-items = {}
 
 app.secret_key = 'secret key'
 
@@ -29,7 +24,6 @@ def registration():
         registered_user = user_details.registration(name, email, password, cpassword)
 
         if registered_user == 1: #successfully logged in
-            users[email] = {'name': name,'password': password}
             return render_template('login.html')
 
         elif registered_user == 2:#Password dont match
@@ -81,8 +75,7 @@ def create():
         me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
-            lists[title] = {'owner':owner, 'Description':description}
-            return render_template("add-item-details.html", title = title)
+            return render_template("add-item-details.html", ttle = title)
 
         if me_list == 10:
             msg = "List already exists"
@@ -101,12 +94,7 @@ def add(title):
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            if title not in items.keys():
-                items[title] = {item_name : [quantity, budget]}
-                return redirect(url_for("view", items_dict = items, lists = lists, title = title))
-            else:
-                items[title][item_name] = [quantity, budget]
-                return redirect(url_for("view", items_dict = items, lists = lists, title = title))
+            return redirect(url_for("view", items_dict = userlist.items_dict, lists = userlist.shoppinglists, ttle = title))
     return render_template('add-item-details.html', ttle = title)
 
 @app.route('/delete/<title>')
@@ -114,8 +102,8 @@ def delete_list(title):
     if request.method == 'GET':
         for list_name in lists.keys():
             if list_name==title:
-                lists.pop(list_name)
-                items.pop(list_name)
+                userlist.shoppinglists.pop(list_name)
+                userlist.items_dict.pop(list_name)
                 return redirect(url_for('view'))
                 
 @app.route('/delete_item/<itemname>')
@@ -124,13 +112,13 @@ def delete_item(itemname):
         for title in items.keys():
             for item in items[title].keys():
                 if item == itemname:
-                    items[title].pop(item)
+                    userlist.shoppinglists[title].pop(item)
                     return redirect(url_for('view'))
     return render_template("view-shopping-list.html")
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-    return render_template("view-shopping-list.html", items_dict = items, lists = lists)
+    return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
 
 @app.route('/logout')
 def logout():
