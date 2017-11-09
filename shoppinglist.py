@@ -1,12 +1,11 @@
 from user import User
-shoppinglists = {}
-items_dict = {}
-
 class Shoppinglist(object):
 	
 	"""
     Class for shoppinglist functionionality
     """
+	shoppinglists = {}
+	items_dict = {}
 	def __init__(self, title=None, description=None, owner=None ):
 		""" Initializing variables"""
 		self.title = title
@@ -29,9 +28,11 @@ class Shoppinglist(object):
 			if item_name != '' and quantity !='' and budget !='':
 				if title not in items_dict.keys():
 					items_dict[title] = {item_name: [quantity, budget]}
+					print(items_dict)
 					return 9
 				else:
-					items_dict[title][item_name] = [quantity, budget]
+					self.items_dict[title][item_name] = [quantity, budget]
+					print(items_dict)
 					return 9
 			else:
 				return 4
