@@ -1,13 +1,14 @@
+users_lists = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
+
 class User(object):
     """
     Class for user functionionality
     """
-    users_lists = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
-    """def __init__(self, name=None, email=None, password=None):
+    def __init__(self, name=None, email=None, password=None):
         """ Initializing variables"""
         self.name = name
         self.email = email
-        self.password = password"""
+        self.password = password
 
     def registration(self, name, email, password, cpassword):
         """registration method"""
