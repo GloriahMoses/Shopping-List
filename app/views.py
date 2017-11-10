@@ -6,7 +6,6 @@ import shoppinglist
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
 
-
 app.secret_key = 'secret key'
 
 @app.route('/')
@@ -16,7 +15,7 @@ def index():
 @app.route('/register/', methods=['GET','POST'])
 def registration():
     """User registration requests"""
-    if method.request == 'POST':
+    if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
@@ -103,18 +102,17 @@ def delete_list(titledel=None):
     for list_name in shoppinglist.shoppinglists.keys():
         if list_name==titledel:
             shoppinglist.shoppinglists.pop(list_name)
-            shoppinglist.items_dict.pop(list_name)
             return redirect(url_for('view'))
                 
-@app.route('/delete_item/<itemname>')
-def delete_item(itemname=None):
+@app.route('/delete_item/<itemdel>')
+def delete_item(itemdel=None):
     for title in shoppinglist.items_dict.keys():
         for item in shoppinglist.items_dict[title].keys():
-            if item == itemname:
-                shoppinglist.shoppinglists[title].pop(item)
+            if item == itemdel:
+                shoppinglist.items_dict[title].pop(item)
                 return redirect(url_for('view'))
 
-@app.route('/view', methods=['GET', 'POST'])
+@app.route('/view')
 def view():
     return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
