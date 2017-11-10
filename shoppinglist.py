@@ -39,8 +39,8 @@ class Shoppinglist(object):
 			else:
 				return 4
 
-	def delete_item(self, title, item_name):
-		print (item)
+	def delete_item(self, item):
+		self.item = shoppinglist.items_dict[title].keys()
 
 	def view(self, items_dict, lists):
 		self.items_dict = items_dict
