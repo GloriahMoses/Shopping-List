@@ -75,7 +75,7 @@ def create():
         me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
-            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", lists = shoppinglist.shoppinglists)
 
         if me_list == 10:
             msg = "List already exists"
