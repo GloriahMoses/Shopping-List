@@ -43,7 +43,7 @@ class Shoppinglist(object):
 		self.item = items_dict[title].keys()
 
 	def view(self, items_dict, lists):
-		self.items_dict = {item_name: [quantity, budget]}
+		self.items_dict[title] = {item_name: [quantity, budget]}
 		#self.items_dict = items_dict
 		self.lists = shoppinglists[title]
 
