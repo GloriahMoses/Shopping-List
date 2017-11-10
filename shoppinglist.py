@@ -41,6 +41,9 @@ class Shoppinglist(object):
 
 	def delete_item(self, item):
 		self.item = shoppinglist.items_dict[title].keys()
+		
+	def delete_list(shoppinglist, list_name):
+		self.list_name = shoppinglist.shoppinglists.keys()
 
 	def view(self, items_dict, lists):
 		self.items_dict = items_dict
