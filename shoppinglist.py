@@ -33,8 +33,11 @@ class Shoppinglist(object):
 					print(items_dict)
 					return 9
 				else:
-					self.items_dict[title][item_name] = [quantity, budget]
+					items_dict[title][item_name] = [quantity, budget]
 					print(items_dict)
 					return 9
 			else:
 				return 4
+
+	def delete_item(self, title, item_name):
+		print (item)
