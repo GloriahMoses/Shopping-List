@@ -110,7 +110,7 @@ def delete_item(itemdel=None):
         for item in shoppinglist.items_dict[title].keys():
             if item == itemdel:
                 shoppinglist.items_dict[title].pop(item)
-                return redirect(url_for('view'))
+                return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/view')
 def view():
