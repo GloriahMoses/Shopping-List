@@ -42,5 +42,6 @@ class Shoppinglist(object):
 	def delete_item(self, title, item_name):
 		print (item)
 
-	def view(self):
-		print (items_dict)
+	def view(self, items_dict, lists):
+		self.items_dict = items_dict
+		self.lists = lists
