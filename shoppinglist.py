@@ -28,7 +28,7 @@ class Shoppinglist(object):
 	def add(self,title, item_name, quantity, budget):
 			"""add items method and edit"""
 			if item_name != '' and quantity !='' and budget !='':
-				for title in shoppinglist.items_dict.keys():
+				for title in items_dict.keys():
 					if title not in items_dict.keys():
 						items_dict[title] = {item_name: [quantity, budget]}
 						print(items_dict)
