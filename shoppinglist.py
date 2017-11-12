@@ -44,8 +44,6 @@ class Shoppinglist(object):
 			for item in items_dict[title].keys():
 				self.item = items_dict[title].keys()
 
-	def view(self):
-		#self.items_dict[title] = {item_name: [quantity, budget]}
-		global items_dict 
-		global shoppinglists 
-
+	def view(self, items_dict, lists):
+		self.items_dict = items_dict
+		self.lists = lists
