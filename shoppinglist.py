@@ -45,5 +45,5 @@ class Shoppinglist(object):
 				self.item = items_dict[title].keys()
 
 	def view(self):
-		items_dict
 		lists = shoppinglists
+		items_dict = items_dict
