@@ -32,6 +32,10 @@ class Shoppinglist(object):
 					if title in items_dict.keys():
 						items_dict[title][item_name] = [quantity, budget]
 						return 9
+					else:
+						return "Title missing"
+				return "anything"
+			return "va"
 
 	def delete_item(self, item):
 		for title in items_dict.keys():
