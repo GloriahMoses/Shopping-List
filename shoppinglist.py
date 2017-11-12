@@ -31,7 +31,7 @@ class Shoppinglist(object):
 				if title not in items_dict.keys():
 					items_dict[title] = {item_name: [quantity, budget]}
 					print(items_dict)
-					return "no title"
+					return 9
 				else:
 					items_dict[title][item_name] = [quantity, budget]
 					print(items_dict)
