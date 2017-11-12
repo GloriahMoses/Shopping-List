@@ -6,7 +6,6 @@ import shoppinglist
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
 
-itemlists = items_dict
 
 app.secret_key = 'secret key'
 
@@ -92,7 +91,7 @@ def add(titleadd=None):
         budget = request.form['budget']
         title = request.form['shopping-list']
         owner = session['email']
-        results = itemlists.add(title, item_name, quantity, budget)
+        results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
             return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
