@@ -43,8 +43,7 @@ class Shoppinglist(object):
 			for item in items_dict[title].keys():
 				self.item = items_dict[title].keys()
 
-	def view(self, items_dict, lists):
-		self.items_dict = items_dict
+	def view(self):
 		lists = shoppinglists
 	
 	def delete_list(self):
