@@ -115,7 +115,9 @@ def delete_item(itemdel=None):
 
 @app.route('/view')
 def view():
-    return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+    items_dict = shoppinglist.items_dict
+    lists = shoppinglist.shoppinglists
+    return render_template("view-shopping-list.html")
 
 @app.route('/logout')
 def logout():
