@@ -89,6 +89,7 @@ def add(titleadd=None):
         item_name = request.form['item_name']
         quantity = request.form['quantity']
         budget = request.form['budget']
+        title = request.form['title']
         owner = session['email']
         results = userlist.add(title, item_name, quantity, budget)
 
