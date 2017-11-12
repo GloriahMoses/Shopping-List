@@ -45,7 +45,7 @@ class Shoppinglist(object):
 
 	def view(self, items_dict, lists):
 		self.items_dict = items_dict
-		self.lists = shoppinglists
+		lists = shoppinglists
 	
 	def delete_list(self):
 		pass
