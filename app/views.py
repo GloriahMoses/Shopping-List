@@ -6,6 +6,7 @@ import shoppinglist
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
 
+
 app.secret_key = 'secret key'
 
 @app.route('/')
@@ -82,7 +83,7 @@ def create():
 
     return render_template('create-shopping-list.html')
 
-@@app.route('/add/<titleadd>', methods=['GET', 'POST'])
+@app.route('/add/<titleadd>', methods=['GET', 'POST'])
 def add(titleadd=None):
     if request.method =='POST':
         item_name = request.form['item_name']
@@ -114,8 +115,6 @@ def delete_item(itemdel=None):
 
 @app.route('/view')
 def view():
-    items_dict = shoppinglist.items_dict
-    lists = shoppinglist.shoppinglists
     return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/logout')
@@ -126,4 +125,3 @@ def logout():
         else:
             session.pop('email')
             return render_template("index.html")
-        
