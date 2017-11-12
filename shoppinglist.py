@@ -46,4 +46,4 @@ class Shoppinglist(object):
 
 	def view(self):
 		lists = shoppinglists
-		items_dict = items_dict
+		items_dict = shoppinglist.items_dict
