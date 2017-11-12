@@ -54,7 +54,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
+            return redirect(url_for('view'))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
