@@ -45,4 +45,5 @@ class Shoppinglist(object):
 				self.item = items_dict[title].keys()
 
 	def view(self):
-		lists = shoppinglists
+		#lists = shoppinglists
+		pass
