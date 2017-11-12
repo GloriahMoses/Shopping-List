@@ -102,7 +102,7 @@ def delete_list(titledel=None):
     for list_name in shoppinglist.shoppinglists.keys():
         if list_name==titledel:
             shoppinglist.shoppinglists.pop(list_name)
-            return redirect(url_for('view'))
+            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
                 
 @app.route('/delete_item/<itemdel>')
 def delete_item(itemdel=None):
