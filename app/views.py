@@ -82,7 +82,7 @@ def create():
 
     return render_template('create-shopping-list.html')
 
-@app.route('/add/<titleadd>', methods=['GET', 'POST'])
+@@app.route('/add/<titleadd>', methods=['GET', 'POST'])
 def add(titleadd=None):
     if request.method =='POST':
         item_name = request.form['item_name']
