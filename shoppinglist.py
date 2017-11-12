@@ -28,13 +28,16 @@ class Shoppinglist(object):
 	def add(self,title, item_name, quantity, budget):
 			"""add items method and edit"""
 			if item_name != '' and quantity !='' and budget !='':
-				if title in items_dict.keys():
+				if title not in items_dict.keys():
+					items_dict[title] = {item_name: [quantity, budget]}
+					print(items_dict)
+					return 9
+				else:
 					items_dict[title][item_name] = [quantity, budget]
 					print(items_dict)
 					return 9
 			else:
 				return 4
-
 	def delete_item(self, item):
 		for title in items_dict.keys():
 			for item in items_dict[title].keys():
