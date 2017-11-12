@@ -40,7 +40,7 @@ class Shoppinglist(object):
 				return 4
 
 	def delete_item(self, item):
-		item = items_dict[title].keys()
+		pass
 
 	def view(self, items_dict, lists):
 		#self.items_dict[title] = {item_name: [quantity, budget]}
