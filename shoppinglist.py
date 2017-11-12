@@ -47,3 +47,6 @@ class Shoppinglist(object):
 	def view(self):
 		#lists = shoppinglists
 		pass
+	
+	def delete_list(self):
+		pass
