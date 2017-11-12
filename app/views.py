@@ -54,7 +54,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_lists = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
+            return redirect(url_for('view', items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -75,7 +75,7 @@ def create():
         me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
-            return render_template("view-shopping-list.html", items_lists = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
         if me_list == 10:
             msg = "List already exists"
@@ -94,7 +94,7 @@ def add(titleadd=None):
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            return render_template("view-shopping-list.html", items_lists = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
     return render_template('add-item-details.html', ttle=titleadd)
 
 @app.route('/delete/<titledel>')
@@ -110,11 +110,11 @@ def delete_item(itemdel=None):
         for item in shoppinglist.items_dict[title].keys():
             if item == itemdel:
                 shoppinglist.items_dict[title].pop(item)
-                return render_template("view-shopping-list.html", items_lists = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+                return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/view')
 def view():
-    return render_template("view-shopping-list.html", items_lists = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+    return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/logout')
 def logout():
