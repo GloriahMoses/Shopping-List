@@ -33,7 +33,7 @@ class Shoppinglist(object):
 					items_dict[title] = {item_name: [quantity, budget]}
 					return 9
 				else:
-					items_dict[title][item_name] = [quantity, budget]
+					items_dict[title] = {item_name: [quantity, budget]}
 					print(items_dict)
 					print(shoppinglists)
 					return 9
