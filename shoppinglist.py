@@ -19,6 +19,7 @@ class Shoppinglist(object):
 		if description != ''and title != '':
 			if title not in shoppinglists.keys():
 				shoppinglists[title] = {'owner':owner, 'Description':description}
+				print(shoppinglists)
 				return 8 #"Successfully created"
 			else:
 				return 10 #"List already exists"
@@ -31,6 +32,7 @@ class Shoppinglist(object):
 				if title not in items_dict.keys():
 					items_dict[title] = {item_name: [quantity, budget]}
 					print(items_dict)
+					print(shoppinglists)
 					return 9
 				else:
 					items_dict[title][item_name] = [quantity, budget]
@@ -39,6 +41,8 @@ class Shoppinglist(object):
 			else:
 				return 4
 	def view(self):
+		print(shoppinglists)
+		print(items_dict)
 		return shoppinglists
 		return items_dict
 	
