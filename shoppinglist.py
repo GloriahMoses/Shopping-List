@@ -5,13 +5,13 @@ class Shoppinglist(object):
 	"""
     Class for shoppinglist functionionality
     """
-	shoppinglists = {}
-	items_dict = {}
 	def __init__(self, title=None, description=None, owner=None ):
 		""" Initializing variables"""
 		self.title = title
 		self.description = description
 		self.owner = owner
+		shoppinglists = {}
+		items_dict = {}
 		
 	def create(self, title, description, owner):
 		"""create list method"""
