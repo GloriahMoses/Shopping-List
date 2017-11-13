@@ -38,14 +38,16 @@ class Shoppinglist(object):
 					return 9
 			else:
 				return 4
+	def view(self):
+		for title in items_dict.keys():
+			title = lists 
+		for item in items_dict[title].keys():
+			items = items_dict
+			
 	def delete_item(self, item):
 		for title in items_dict.keys():
 			for item in items_dict[title].keys():
 				self.item = items_dict[title].keys()
-
-	def view(self, lists, items_dict):
-		lists = shoppinglists
-		items_dict = items_dict
 	
 	def delete_list(self):
 		pass
