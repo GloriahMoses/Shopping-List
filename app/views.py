@@ -54,7 +54,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
+            return redirect(url_for('view', items_dict = userlist.items_dict, lists = userlist.shoppinglists))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -75,7 +75,7 @@ def create():
         me_list = userlist.create(title,description,owner)
 
         if me_list == 8:
-            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
 
         if me_list == 10:
             msg = "List already exists"
@@ -94,7 +94,8 @@ def add(titleadd=None):
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
-            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
+        
     return render_template('add-item-details.html', ttle=titleadd)
 
 @app.route('/delete/<titledel>')
@@ -102,7 +103,7 @@ def delete_list(titledel=None):
     for list_name in shoppinglist.shoppinglists.keys():
         if list_name==titledel:
             shoppinglist.shoppinglists.pop(list_name)
-            return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
                 
 @app.route('/delete_item/<itemdel>')
 def delete_item(itemdel=None):
@@ -110,14 +111,14 @@ def delete_item(itemdel=None):
         for item in shoppinglist.items_dict[title].keys():
             if item == itemdel:
                 shoppinglist.items_dict[title].pop(item)
-                return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+                return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
     if request.method =='GET':
         items_dict = shoppinglist.items_dict
         lists = shoppinglist.shoppinglists
-        return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+        return render_template("view-shopping-list.html", items_dict = userlist.items_dict, lists = userlist.shoppinglists)
 
 @app.route('/logout')
 def logout():
