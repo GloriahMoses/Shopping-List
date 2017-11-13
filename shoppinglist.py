@@ -40,6 +40,8 @@ class Shoppinglist(object):
 			else:
 				return 4
 	def view(self):
+		print(items_dict)
+		print(shoppinglists)
 		return shoppinglists
 		return items_dict
 	
