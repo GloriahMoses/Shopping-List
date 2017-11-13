@@ -1,13 +1,12 @@
 from user import User
 
-shoppinglists = {}
-items_dict = {}
-
 class Shoppinglist(object):
 
 	"""
     Class for shoppinglist functionionality
     """
+	shoppinglists = {}
+	items_dict = {}
 	def __init__(self, title=None, description=None, owner=None ):
 		""" Initializing variables"""
 		self.title = title
