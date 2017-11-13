@@ -30,11 +30,10 @@ class Shoppinglist(object):
 			"""add items method and edit"""
 			if item_name != '' and quantity !='' and budget !='':
 				if title in items_dict.keys():
-					items_dict[title].update({item_name: [quantity, budget]}) 
-					print(items_dict)
+					items_dict[title] = {item_name: [quantity, budget]}
 					return 9
-				else:
-					return "error"
+					print(items_dict)
+					print(shoppinglists)
 			else:
 				return 4
 	def view(self):
