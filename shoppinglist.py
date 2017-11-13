@@ -1,8 +1,9 @@
 from user import User
 
+shoppinglists = {}
+items_dict = {}
+	
 class Shoppinglist(object):
-	shoppinglists = {}
-	items_dict = {}
 
 	"""
     Class for shoppinglist functionionality
@@ -38,10 +39,9 @@ class Shoppinglist(object):
 			else:
 				return 4
 	def view(self):
-		for title in items_dict.keys():
-			title = lists 
-		for item in items_dict[title].keys():
-			items = items_dict
+		return shoppinglists
+		return items_dict
+	
 			
 	def delete_item(self, item):
 		for title in items_dict.keys():
