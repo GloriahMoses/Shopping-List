@@ -112,9 +112,12 @@ def delete_item(itemdel=None):
                 shoppinglist.items_dict[title].pop(item)
                 return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
-@app.route('/view')
+@app.route('/view', methods=['GET', 'POST'])
 def view():
-    return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
+    if request.method =='GET':
+        items_dict = shoppinglist.items_dict
+        lists = shoppinglist.shoppinglists
+        return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/logout')
 def logout():
