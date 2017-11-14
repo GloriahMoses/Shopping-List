@@ -33,14 +33,10 @@ class Shoppinglist(object):
 				if title not in shoppinglists.keys():
 					return "Error"
 				else:
-					for title, description in items_dict.items():
-						if isinstance(v, collections.Mapping):
-							items_dict[title] = update(items_dict.get(item_name, {quantity, budget}), description)
-							print(items_dict)
-							print(shoppinglists)
-							return 9
-					else:
-						return 'Item exists'
+					items_dict[title] = {item_name: [quantity, budget]}
+					print(items_dict)
+					print(shoppinglists)
+					return 9
 			else:
 				return 4
 	def view(self):
