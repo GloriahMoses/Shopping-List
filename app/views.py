@@ -84,7 +84,7 @@ def create():
     return render_template('create-shopping-list.html')
 
 @app.route('/add/<titleadd>', methods=['GET', 'POST'])
-def add(ttle=titleadd):
+def add(titleadd):
     if request.method =='POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
@@ -95,7 +95,7 @@ def add(ttle=titleadd):
 
         if results == 9:
             return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
-    return render_template('add-item-details.html')
+    return render_template('add-item-details.html', ttle=titleadd)
     #return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/delete/<titledel>')
