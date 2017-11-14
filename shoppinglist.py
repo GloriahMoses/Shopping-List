@@ -39,8 +39,6 @@ class Shoppinglist(object):
 							print(items_dict)
 							print(shoppinglists)
 					return 9
-						else:
-							return "Error"
 			else:
 				return 4
 	def view(self):
