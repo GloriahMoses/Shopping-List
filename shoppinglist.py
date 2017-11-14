@@ -34,10 +34,13 @@ class Shoppinglist(object):
 					return "Error"
 				else:
 					for title in shoppinglists.keys():
-						items_dict.update({title:{item_name: [quantity, budget]}})
-						print(items_dict)
-						print(shoppinglists)
-					return 9
+						if title = titleadd:
+							items_dict.update({title:{item_name: [quantity, budget]}})
+							print(items_dict)
+							print(shoppinglists)
+							return 9
+						else:
+							return "Error"
 			else:
 				return 4
 	def view(self):
