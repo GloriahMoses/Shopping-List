@@ -84,7 +84,7 @@ def create():
     return render_template('create-shopping-list.html')
 
 @app.route('/add/<titleadd>', methods=['GET', 'POST'])
-def add(titleadd=ttle):
+def add(ttle=titleadd):
     if request.method =='POST':
         item_name = request.form['item_name']
         quantity = request.form['quantity']
