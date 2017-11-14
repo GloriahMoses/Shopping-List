@@ -32,10 +32,13 @@ class Shoppinglist(object):
 				if title not in shoppinglists.keys():
 					return "Error"
 				else:
-					items_dict[title] = {item_name: [quantity, budget]}
-					print(items_dict)
-					print(shoppinglists)
-					return 9
+					if item_name not in items_dict.keys():
+						items_dict[title] = {item_name: [quantity, budget]}
+						print(items_dict)
+						print(shoppinglists)
+						return 9
+					else:
+						return 'Item exists'
 			else:
 				return 4
 	def view(self):
