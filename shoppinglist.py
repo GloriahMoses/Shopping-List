@@ -34,7 +34,7 @@ class Shoppinglist(object):
 					return "Error"
 				else:
 					newitem = {item_name: [quantity, budget]}
-					items_dict[title] = {item_name: [quantity, budget]}
+					items_dict[title].update(newitem)
 					print(items_dict)
 					print(shoppinglists)
 					return 9
