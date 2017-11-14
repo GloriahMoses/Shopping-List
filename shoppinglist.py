@@ -30,9 +30,9 @@ class Shoppinglist(object):
 			"""add items method and edit"""
 			if item_name != '' and quantity !='' and budget !='':
 				items_dict[title] = {item_name: [quantity, budget]}
-					print(items_dict)
-					print(shoppinglists)
-					return 9
+				print(items_dict)
+				print(shoppinglists)
+				return 9
 			else:
 				return 4
 	def view(self):
