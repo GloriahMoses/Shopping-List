@@ -95,7 +95,8 @@ def add(titleadd=None):
 
         if results == 9:
             return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
-    return render_template('add-item-details.html', ttle=titleadd)
+    #return render_template('add-item-details.html', ttle=titleadd)
+    return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
 
 @app.route('/delete/<titledel>')
 def delete_list(titledel=None):
