@@ -1,4 +1,5 @@
 from user import User
+import collections
 
 shoppinglists = {}
 items_dict = {}
@@ -32,11 +33,12 @@ class Shoppinglist(object):
 				if title not in shoppinglists.keys():
 					return "Error"
 				else:
-					if item_name not in items_dict.keys():
-						items_dict[title] = update(items_dict.get(item_name, {quantity, budget}))
-						print(items_dict)
-						print(shoppinglists)
-						return 9
+					for title, description in items_dict.items():
+						if isinstance(v, collections.Mapping):
+							items_dict[title] = update(items_dict.get(item_name, {quantity, budget}), description)
+							print(items_dict)
+							print(shoppinglists)
+							return 9
 					else:
 						return 'Item exists'
 			else:
