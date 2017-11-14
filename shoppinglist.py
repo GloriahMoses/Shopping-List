@@ -33,10 +33,11 @@ class Shoppinglist(object):
 				if title not in shoppinglists.keys():
 					return "Error"
 				else:
-					items_dict.update({title:{item_name: [quantity, budget]}})
-					print(items_dict)
-					print(shoppinglists)
-					return 9
+					for title in shoppinglists.keys():
+						items_dict.update({title:{item_name: [quantity, budget]}})
+						print(items_dict)
+						print(shoppinglists)
+						return 9
 			else:
 				return 4
 	def view(self):
