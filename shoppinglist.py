@@ -33,7 +33,8 @@ class Shoppinglist(object):
 				if title not in shoppinglists.keys():
 					return "Error"
 				else:
-					iitems_dict[title] = {item_name: [quantity, budget]}
+					newitem = {item_name: [quantity, budget]}
+					items_dict[title] = {item_name: [quantity, budget]}
 					print(items_dict)
 					print(shoppinglists)
 					return 9
