@@ -1,6 +1,5 @@
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
-<<<<<<< HEAD
 #from user import User
 import user
 
@@ -11,15 +10,12 @@ user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
 items = userlist.items_dict
 #items = shoppinglist.items_dict
-slists = shoppinglist.shoppinglists
-=======
+lists = shoppinglist.shoppinglists
 import user
 import shoppinglist
 
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
-
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
 
 app.secret_key = 'secret key'
 
@@ -68,11 +64,11 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-<<<<<<< HEAD
+
             return redirect(url_for('view', items_dict = items, lists = userlist.items_dict))
-=======
+
             return redirect(url_for('view', items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
+
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -109,7 +105,6 @@ def add(titleadd=None):
         budget = request.form['budget']
         title = request.form['shopping-list']
         owner = session['email']
-<<<<<<< HEAD
         title = request.form['title']
         items_dict = userlist.add(title, item_name, quantity, budget)
 
@@ -127,7 +122,7 @@ def delete_list(title):
                 #shoppinglist.Shoppinglist.pop(list_name)
                 userlist.items_dict.pop(list_name)
                 return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
-=======
+
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
@@ -141,7 +136,7 @@ def delete_list(titledel=None):
         if list_name==titledel:
             shoppinglist.shoppinglists.pop(list_name)
             return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
+
                 
 @app.route('/delete_item/<itemdel>')
 def delete_item(itemdel=None):
@@ -153,17 +148,17 @@ def delete_item(itemdel=None):
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-<<<<<<< HEAD
+
     if request.method == 'GET':
         pass
 
     return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
-=======
+
     if request.method =='GET':
         items_dict = shoppinglist.items_dict
         lists = shoppinglist.shoppinglists
         return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
+
 
 @app.route('/logout')
 def logout():
@@ -171,10 +166,10 @@ def logout():
         if 'email' not in session:
             return redirect(url_for('login'))
         else:
-<<<<<<< HEAD
+
             session.pop('owner', None)
             return render_template("index.html")
-=======
+
             session.pop('email')
             return render_template("index.html")
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
+
