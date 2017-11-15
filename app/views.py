@@ -8,7 +8,7 @@ import shoppinglist
 
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
-items = userlist.items_dict
+#items = userlist.items_dict
 #items = shoppinglist.items_dict
 lists = shoppinglist.shoppinglists
 import user
