@@ -10,6 +10,7 @@ user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
 items = userlist.items_dict
 #items = shoppinglist.items_dict
+slists = shoppinglist.shoppinglists
 
 app.secret_key = 'secret key'
 
@@ -59,7 +60,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-            return redirect(url_for('view', items_dict = items, lists = shoppinglist.shoppinglists))
+            return redirect(url_for('view', items_dict = items, lists = userlist.items_dict))
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -100,7 +101,7 @@ def add(title):
         items_dict = userlist.add(title, item_name, quantity, budget)
 
         if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
+            return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
         else:
             print(items_dict)
     return render_template('add-item-details.html', title = title)
@@ -108,11 +109,11 @@ def add(title):
 @app.route('/delete/<title>')
 def delete_list(title):
     if request.method == 'GET':
-        for list_name in userlist.shoppinglist.keys():
-            if list_name==title:
-                userlist.shoppinglist.pop(list_name)
+        for list_name in userlist.items_dict.keys():
+            if list_name == title:
+                #shoppinglist.Shoppinglist.pop(list_name)
                 userlist.items_dict.pop(list_name)
-                return redirect(url_for('view'))
+                return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
                 
 @app.route('/delete_item/<itemname>')
 def delete_item(itemname):
@@ -128,9 +129,7 @@ def delete_item(itemname):
 @app.route('/view', methods=['GET', 'POST'])
 def view():
     if request.method == 'GET':
-        for current_owner in userlist.items_dict.keys():
-            if current_owner == session['email']:
-                return render_template("view-shopping-list.html")
+        pass
 
     return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
 
