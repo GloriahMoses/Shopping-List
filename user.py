@@ -54,3 +54,4 @@ class User(object):
                 return "Email not registered"
         else:
             return "Email cant be blank"
+        
