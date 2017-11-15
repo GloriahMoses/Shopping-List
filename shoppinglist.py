@@ -1,19 +1,14 @@
 from user import User
-<<<<<<< HEAD
+
 shoppinglists = {}
-=======
+
 import collections
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
 
 shoppinglists = {}
 items_dict = {}
 	
 class Shoppinglist(object):
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
 	"""
     Class for shoppinglist functionionality
     """
@@ -28,10 +23,7 @@ class Shoppinglist(object):
 		if description != ''and title != '':
 			if title not in shoppinglists.keys():
 				shoppinglists[title] = {'owner':owner, 'Description':description}
-<<<<<<< HEAD
-=======
 				print(shoppinglists)
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
 				return 8 #"Successfully created"
 			else:
 				return 10 #"List already exists"
