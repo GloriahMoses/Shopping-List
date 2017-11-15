@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 users_lists = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
 
->>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
 class User(object):
     """
     Class for user functionionality
