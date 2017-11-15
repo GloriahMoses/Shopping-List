@@ -40,12 +40,12 @@
 
           </div>
             <h4>
-              {{ title }}
+              {{ ttle }}
             </h4>
 
           <h5>Item details</h5>
           <div class="form"><!--Form start-->
-            <form action="{{ url_for('add', title = title, itemname = itemname)}}" method="POST">
+            <form action="{{ url_for('add', titleadd=ttle)}}" method="POST">
 
               <div class="form-group"><!--Item Name start-->
                 <input type="text" name="item_name" class="form-control" placeholder="Item Name">
@@ -58,10 +58,9 @@
               <div class="form-group"><!--Budget start-->
                 <input type="text" name="budget" class="form-control" placeholder="Estimated Budget">
               </div> <!--Budget end-->
-              <div>
-                <input type="hidden"  class="form-control" name="title" value="{{ title }}">
-              </div>
-
+              <div class="form-group"><!--Budget start-->
+                <input type="hidden" name="shopping-list" class="form-control" value="{{ ttle }}">
+              </div> <!--Budget end-->
               <div class="form-group"><!--submit start-->
                 <input type="submit" id="submit" class="btn btn-info" value="ADD">
               </div> <!--submit end-->

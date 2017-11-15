@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+users_lists = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
+
+>>>>>>> 1511ec97342390e7c56b342473627d0dbc4f0419
 class User(object):
     """
     Class for user functionionality
@@ -7,16 +12,15 @@ class User(object):
         self.name = name
         self.email = email
         self.password = password
-        self.users_lists = {'glo@gmail.com': {'name': 'gilo', 'email': 'glo@gmail.com', 'password': 'gggggg'}}
 
     def registration(self, name, email, password, cpassword):
         """registration method"""
         if name != '' and email != ''and password != '' and cpassword != '':
-            if email not in self.users_lists.keys():
+            if email not in users_lists.keys():
                 if password == cpassword:
                     if len(password) >= 6:
-                        self.users_lists[email] = {'name': name,'password': password}
-                        print (self.users_lists)
+                        users_lists[email] = {'name': name,'email': email,'password': password}
+                        print (users_lists)
                         return 1 #success,login page
                     else:
                         return 12
@@ -30,8 +34,8 @@ class User(object):
     def login(self, email, password):
         """ Login method"""
         if email != ''and password != '':
-            if email in self.users_lists.keys():
-                if password == self.users_lists[email]['password']:
+            if email in users_lists.keys():
+                if password == users_lists[email]['password']:
                     return 5 #Login successfull
                 else:
                     return 6 #Wrong password
