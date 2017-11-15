@@ -1,21 +1,11 @@
 from flask import render_template, request, session, redirect, url_for, flash
 from app import app
-#from user import User
-import user
-
-#from shoppinglist import shoppinglists, Shoppinglist
-import shoppinglist
-
-user_details = user.User()
-userlist= shoppinglist.Shoppinglist()
-#items = userlist.items_dict
-#items = shoppinglist.items_dict
-lists = shoppinglist.shoppinglists
 import user
 import shoppinglist
 
 user_details = user.User()
 userlist= shoppinglist.Shoppinglist()
+
 
 app.secret_key = 'secret key'
 
@@ -64,11 +54,7 @@ def login():
     
         if details == 5: #Login successfull
             session['email'] = request.form['email']
-
-            return redirect(url_for('view', items_dict = items, lists = userlist.items_dict))
-
             return redirect(url_for('view', items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists))
-
             
         elif details == 6:#Wrong password
           msg = "Wrong email/password, try again"
@@ -105,24 +91,6 @@ def add(titleadd=None):
         budget = request.form['budget']
         title = request.form['shopping-list']
         owner = session['email']
-        title = request.form['title']
-        items_dict = userlist.add(title, item_name, quantity, budget)
-
-        if items_dict == 9:
-            return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
-        else:
-            print(items_dict)
-    return render_template('add-item-details.html', title = title)
-
-@app.route('/delete/<title>')
-def delete_list(title):
-    if request.method == 'GET':
-        for list_name in userlist.items_dict.keys():
-            if list_name == title:
-                #shoppinglist.Shoppinglist.pop(list_name)
-                userlist.items_dict.pop(list_name)
-                return render_template("view-shopping-list.html", items_dict = items, lists = userlist.items_dict)
-
         results = userlist.add(title, item_name, quantity, budget)
 
         if results == 9:
@@ -136,7 +104,6 @@ def delete_list(titledel=None):
         if list_name==titledel:
             shoppinglist.shoppinglists.pop(list_name)
             return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
-
                 
 @app.route('/delete_item/<itemdel>')
 def delete_item(itemdel=None):
@@ -148,17 +115,10 @@ def delete_item(itemdel=None):
 
 @app.route('/view', methods=['GET', 'POST'])
 def view():
-
-    if request.method == 'GET':
-        pass
-
-    return render_template("view-shopping-list.html", items_dict = items, lists = shoppinglist.shoppinglists)
-
     if request.method =='GET':
         items_dict = shoppinglist.items_dict
         lists = shoppinglist.shoppinglists
         return render_template("view-shopping-list.html", items_dict = shoppinglist.items_dict, lists = shoppinglist.shoppinglists)
-
 
 @app.route('/logout')
 def logout():
@@ -166,10 +126,5 @@ def logout():
         if 'email' not in session:
             return redirect(url_for('login'))
         else:
-
-            session.pop('owner', None)
-            return render_template("index.html")
-
             session.pop('email')
             return render_template("index.html")
-
